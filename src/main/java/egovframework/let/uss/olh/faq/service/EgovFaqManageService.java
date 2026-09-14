@@ -26,25 +26,22 @@ public interface EgovFaqManageService {
 	 * FAQ 글을 조회한다.
 	 * @param vo
 	 * @return 조회한 글
-	 * @exception Exception
 	 */
-	FaqManageVO selectFaqListDetail(FaqManageVO vo) throws Exception;
+	FaqManageVO selectFaqListDetail(FaqManageVO vo);
 
 	/**
 	 * 조회수를 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
-    void updateFaqInqireCo(FaqManageVO vo) throws Exception;
+    void updateFaqInqireCo(FaqManageVO vo);
 
 
     /**
 	 * FAQ 글 목록을 조회한다.
 	 * @param searchVO
 	 * @return 글 목록
-	 * @exception Exception
 	 */
-	List<?> selectFaqList(FaqManageDefaultVO searchVO) throws Exception;
+	List<?> selectFaqList(FaqManageDefaultVO searchVO);
 
     /**
 	 * FAQ 글 총 갯수를 조회한다.
@@ -56,24 +53,21 @@ public interface EgovFaqManageService {
 	/**
 	 * FAQ글ㅇ르 등록한다.
 	 * @param vo
-	 * @exception Exception
 	 */
-    void insertFaqCn(FaqManageVO vo) throws Exception;
+    void insertFaqCn(FaqManageVO vo);
 
 
 	/**
 	 * FAQ 글을 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
-    void updateFaqCn(FaqManageVO vo) throws Exception;
+    void updateFaqCn(FaqManageVO vo);
 
 	/**
 	 * FAQ 글을 삭제한다.
 	 * @param vo
-	 * @exception Exception
 	 */
-    void deleteFaqCn(FaqManageVO vo) throws Exception;
+    void deleteFaqCn(FaqManageVO vo);
 
 
 }

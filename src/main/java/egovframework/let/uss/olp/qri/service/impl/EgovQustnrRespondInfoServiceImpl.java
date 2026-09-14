@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.springframework.stereotype.Service;
 
@@ -42,30 +44,27 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
 	 * 설문템플릿을 조회한다.
 	 * @param map - 조회할 정보가 담긴 map
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrTmplatManage(Map<?, ?> map) throws Exception{
+	public List<?> selectQustnrTmplatManage(Map<?, ?> map) {
 		return dao.selectQustnrTmplatManage(map);
 	}
     /**
 	 * 객관식 통계를 조회 조회한다.
 	 * @param map - 조회할 정보가 담긴 map
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondInfoManageStatistics1(Map<?, ?> map) throws Exception{
+	public List<?> selectQustnrRespondInfoManageStatistics1(Map<?, ?> map) {
 		return dao.selectQustnrRespondInfoManageStatistics1(map);
 	}
     /**
 	 * 주관식 통계를 조회 조회한다.
 	 * @param map - 조회할 정보가 담긴 map
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondInfoManageStatistics2(Map<?, ?> map) throws Exception{
+	public List<?> selectQustnrRespondInfoManageStatistics2(Map<?, ?> map) {
 		return dao.selectQustnrRespondInfoManageStatistics2(map);
 	}
 
@@ -73,10 +72,9 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
 	 * 회원정보를 조회한다.
 	 * @param map - 조회할 정보가 담긴 map
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public Map<?, ?> selectQustnrRespondInfoManageEmplyrinfo(Map<?, ?> map) throws Exception{
+	public Map<?, ?> selectQustnrRespondInfoManageEmplyrinfo(Map<?, ?> map) {
 		return dao.selectQustnrRespondInfoManageEmplyrinfo(map);
 	}
 
@@ -84,30 +82,27 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
 	 * 설문정보를 조회한다.
 	 * @param map - 조회할 정보가 담긴 map
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondInfoManageComtnqestnrinfo(Map<?, ?> map) throws Exception{
+	public List<?> selectQustnrRespondInfoManageComtnqestnrinfo(Map<?, ?> map) {
 		return dao.selectQustnrRespondInfoManageComtnqestnrinfo(map);
 	}
     /**
 	 * 문항정보를 조회한다.
 	 * @param map - 조회할 정보가 담긴 map
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondInfoManageComtnqustnrqesitm(Map<?, ?> map) throws Exception{
+	public List<?> selectQustnrRespondInfoManageComtnqustnrqesitm(Map<?, ?> map) {
 		return dao.selectQustnrRespondInfoManageComtnqustnrqesitm(map);
 	}
     /**
 	 * 항목정보를 조회한다.
 	 * @param map - 조회할 정보가 담긴 map
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondInfoManageComtnqustnriem(Map<?, ?> map) throws Exception{
+	public List<?> selectQustnrRespondInfoManageComtnqustnriem(Map<?, ?> map) {
 		return dao.selectQustnrRespondInfoManageComtnqustnriem(map);
 	}
 
@@ -115,10 +110,9 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
 	 *  설문조사(설문등록)를(을) 목록을 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondInfoManageList(ComDefaultVO searchVO) throws Exception{
+	public List<?> selectQustnrRespondInfoManageList(ComDefaultVO searchVO) {
 		return dao.selectQustnrRespondInfoManageList(searchVO);
 	}
 
@@ -126,10 +120,9 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
 	 * 설문조사(설문등록)를(을) 목록 전체 건수를(을) 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return
-	 * @throws Exception
 	 */
 	@Override
-	public int selectQustnrRespondInfoManageListCnt(ComDefaultVO searchVO) throws Exception{
+	public int selectQustnrRespondInfoManageListCnt(ComDefaultVO searchVO) {
 		return dao.selectQustnrRespondInfoManageListCnt(searchVO);
 	}
 
@@ -137,10 +130,9 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
 	 * 응답자결과(설문조사) 목록을 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondInfoList(ComDefaultVO searchVO) throws Exception{
+	public List<?> selectQustnrRespondInfoList(ComDefaultVO searchVO) {
 		return dao.selectQustnrRespondInfoList(searchVO);
 	}
 
@@ -148,10 +140,9 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
 	 * 응답자결과(설문조사)를(을) 상세조회 한다.
 	 * @param QustnrRespondInfo - 회정정보가 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondInfoDetail(QustnrRespondInfoVO qustnrRespondInfoVO) throws Exception{
+	public List<?> selectQustnrRespondInfoDetail(QustnrRespondInfoVO qustnrRespondInfoVO) {
 		return dao.selectQustnrRespondInfoDetail(qustnrRespondInfoVO);
 	}
 
@@ -159,21 +150,24 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
 	 * 응답자결과(설문조사)를(을) 목록 전체 건수를(을) 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return int
-	 * @throws Exception
 	 */
 	@Override
-	public int selectQustnrRespondInfoListCnt(ComDefaultVO searchVO) throws Exception{
+	public int selectQustnrRespondInfoListCnt(ComDefaultVO searchVO) {
 		return dao.selectQustnrRespondInfoListCnt(searchVO);
 	}
 
     /**
 	 * 응답자결과(설문조사)를(을) 등록한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void insertQustnrRespondInfo(QustnrRespondInfoVO qustnrRespondInfoVO) throws Exception {
-		String sMakeId = idgenService.getNextStringId();
+	public void insertQustnrRespondInfo(QustnrRespondInfoVO qustnrRespondInfoVO) {
+		String sMakeId;
+		try {
+			sMakeId = idgenService.getNextStringId();
+		} catch (FdlException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		qustnrRespondInfoVO.setQestnrQesrspnsId(sMakeId);
 
@@ -183,10 +177,9 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
     /**
 	 * 응답자결과(설문조사)를(을) 수정한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void updateQustnrRespondInfo(QustnrRespondInfoVO qustnrRespondInfoVO) throws Exception{
+	public void updateQustnrRespondInfo(QustnrRespondInfoVO qustnrRespondInfoVO) {
 		prepareMngrAt(qustnrRespondInfoVO);
 		dao.updateQustnrRespondInfo(qustnrRespondInfoVO);
 	}
@@ -194,16 +187,15 @@ public class EgovQustnrRespondInfoServiceImpl extends EgovAbstractServiceImpl im
     /**
 	 * 응답자결과(설문조사)를(을) 삭제한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void deleteQustnrRespondInfo(QustnrRespondInfoVO qustnrRespondInfoVO) throws Exception{
+	public void deleteQustnrRespondInfo(QustnrRespondInfoVO qustnrRespondInfoVO) {
 		prepareMngrAt(qustnrRespondInfoVO);
 		dao.deleteQustnrRespondInfo(qustnrRespondInfoVO);
 	}
 
 	@Override
-	public String selectFrstRegisterIdByRespondId(QustnrRespondInfoVO qustnrRespondInfoVO) throws Exception {
+	public String selectFrstRegisterIdByRespondId(QustnrRespondInfoVO qustnrRespondInfoVO) {
 		return dao.selectFrstRegisterIdByRespondId(qustnrRespondInfoVO);
 	}
 

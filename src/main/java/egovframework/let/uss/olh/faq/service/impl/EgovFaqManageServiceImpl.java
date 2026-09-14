@@ -3,6 +3,8 @@ package egovframework.let.uss.olh.faq.service.impl;
 import java.util.List;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.springframework.stereotype.Service;
 
@@ -44,23 +46,22 @@ public class EgovFaqManageServiceImpl extends EgovAbstractServiceImpl implements
 	 * FAQ 글을 조회한다.
 	 * @param vo - 조회할 정보가 담긴 FaqManageVO
 	 * @return 조회한 글
-	 * @exception Exception
 	 */
     @Override
-	public FaqManageVO selectFaqListDetail(FaqManageVO vo) throws Exception {
+	public FaqManageVO selectFaqListDetail(FaqManageVO vo) {
         FaqManageVO resultVO = faqManageDAO.selectFaqListDetail(vo);
-        if (resultVO == null)
-            throw processException("info.nodata.msg");
+        if (resultVO == null) {
+            throw new BaseRuntimeException(processException("info.nodata.msg"));
+        }
         return resultVO;
     }
 
 	/**
 	 * FAQ 조회수를 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void updateFaqInqireCo(FaqManageVO vo) throws Exception {
+	public void updateFaqInqireCo(FaqManageVO vo) {
 
     	faqManageDAO.updateFaqInqireCo(vo);
     }
@@ -69,10 +70,9 @@ public class EgovFaqManageServiceImpl extends EgovAbstractServiceImpl implements
 	 * FAQ 글 목록을 조회한다.
 	 * @param searchVO
 	 * @return 글 목록
-	 * @exception Exception
 	 */
 	@Override
-	public List<?> selectFaqList(FaqManageDefaultVO searchVO) throws Exception {
+	public List<?> selectFaqList(FaqManageDefaultVO searchVO) {
         return faqManageDAO.selectFaqList(searchVO);
     }
 
@@ -80,7 +80,6 @@ public class EgovFaqManageServiceImpl extends EgovAbstractServiceImpl implements
 	 * FAQ 글 총 갯수를 조회한다.
 	 * @param searchVO
 	 * @return 글 총 갯수
-	 * @exception
 	 */
     @Override
 	public int selectFaqListTotCnt(FaqManageDefaultVO searchVO) {
@@ -90,12 +89,16 @@ public class EgovFaqManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * FAQ 글을 등록한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void insertFaqCn(FaqManageVO vo) throws Exception {
+	public void insertFaqCn(FaqManageVO vo) {
 
-		String	newsId = idgenService.getNextStringId();
+		String newsId;
+		try {
+			newsId = idgenService.getNextStringId();
+		} catch (FdlException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		vo.setFaqId(newsId);
 
@@ -105,10 +108,9 @@ public class EgovFaqManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * FAQ 글을 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void updateFaqCn(FaqManageVO vo) throws Exception {
+	public void updateFaqCn(FaqManageVO vo) {
 
     	faqManageDAO.updateFaqCn(vo);
     }
@@ -116,10 +118,9 @@ public class EgovFaqManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * FAQ 글을 삭제한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void deleteFaqCn(FaqManageVO vo) throws Exception {
+	public void deleteFaqCn(FaqManageVO vo) {
 
     	faqManageDAO.deleteFaqCn(vo);
     }

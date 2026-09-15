@@ -34,7 +34,6 @@ public class BannerDAO extends EgovAbstractMapper {
 	 * 배너를 관리하기 위해 등록된 배너목록을 조회한다.
 	 * @param bannerVO - 배너 Vo
 	 * @return List - 배너 목록
-	 * @exception Exception
 	 */
 	public List<BannerVO> selectBannerList(BannerVO bannerVO) {
 		return selectList("bannerDAO.selectBannerList", bannerVO);
@@ -44,7 +43,6 @@ public class BannerDAO extends EgovAbstractMapper {
 	 * 배너목록 총 갯수를 조회한다.
 	 * @param bannerVO BannerVO
 	 * @return int
-	 * @exception Exception
 	 */
     public int selectBannerListTotCnt(BannerVO bannerVO) {
         return (Integer)selectOne("bannerDAO.selectBannerListTotCnt", bannerVO);
@@ -100,7 +98,6 @@ public class BannerDAO extends EgovAbstractMapper {
 	 * 배너가 특정화면에 반영된 결과를 조회한다.
 	 * @param bannerVO - 배너 VO
 	 * @return BannerVO - 배너 VO
-	 * @exception Exception
 	 */
 	public List<BannerVO> selectBannerResult(BannerVO bannerVO) {
 		return selectList("bannerDAO.selectBannerResult", bannerVO);

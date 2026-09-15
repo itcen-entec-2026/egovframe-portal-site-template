@@ -1,5 +1,7 @@
 package egovframework.let.sec.gmt.web;
 
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -58,11 +60,9 @@ public class EgovGroupManageController {
     /**
 	 * 그룹 목록화면 이동
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping("/sec/gmt/EgovGroupListView.do")
-    public String selectGroupListView()
-            throws Exception {
+    public String selectGroupListView() {
         return "/sec/gmt/EgovGroupManage";
     }   
 
@@ -70,10 +70,9 @@ public class EgovGroupManageController {
 	 * 시스템사용 목적별 그룹 목록 조회
 	 * @param groupManageVO GroupManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/gmt/EgovGroupList.do")
-	public String selectGroupList(@ModelAttribute("groupManageVO") GroupManageVO groupManageVO, ModelMap model) throws Exception {
+	public String selectGroupList(@ModelAttribute("groupManageVO") GroupManageVO groupManageVO, ModelMap model) {
     	/** paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(groupManageVO.getPageIndex());
@@ -99,10 +98,9 @@ public class EgovGroupManageController {
 	 * 검색조건에 따른 그룹정보를 조회
 	 * @param groupManageVO GroupManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/gmt/EgovGroup.do")
-	public String selectGroup(@ModelAttribute("groupManageVO") GroupManageVO groupManageVO, ModelMap model) throws Exception {
+	public String selectGroup(@ModelAttribute("groupManageVO") GroupManageVO groupManageVO, ModelMap model) {
 	    model.addAttribute("groupManage", egovGroupManageService.selectGroup(groupManageVO));
 	    return "/sec/gmt/EgovGroupUpdate";
 	}
@@ -110,11 +108,9 @@ public class EgovGroupManageController {
     /**
 	 * 그룹 등록화면 이동
 	 * @return String
-	 * @exception Exception
 	 */     
     @RequestMapping(value="/sec/gmt/EgovGroupInsertView.do")
-    public String insertGroupView()
-            throws Exception {
+    public String insertGroupView() {
         return "/sec/gmt/EgovGroupInsert";
     }
 
@@ -123,20 +119,23 @@ public class EgovGroupManageController {
 	 * @param groupManage GroupManage
 	 * @param groupManageVO GroupManageVO
 	 * @return String
-	 * @exception Exception
 	 */ 
     @RequestMapping(value="/sec/gmt/EgovGroupInsert.do", method = RequestMethod.POST)
 	public String insertGroup(@Valid @ModelAttribute("groupManage") GroupManage groupManage, 
 			                   BindingResult bindingResult,
 			                  @ModelAttribute("groupManageVO") GroupManageVO groupManageVO, 
 			                   SessionStatus status, 
-			                   ModelMap model) throws Exception {
+			                   ModelMap model) {
     	
     	// zzz validation 처리 필요
     	if (bindingResult.hasErrors()) { 
 			return "/sec/gmt/EgovGroupInsert";
 		} else {
-	    	groupManage.setGroupId(egovGroupIdGnrService.getNextStringId());
+	    	try {
+				groupManage.setGroupId(egovGroupIdGnrService.getNextStringId());
+			} catch (FdlException e) {
+				throw new BaseRuntimeException(e);
+			}
 	        groupManageVO.setGroupId(groupManage.getGroupId());
 	        
 	        status.setComplete();
@@ -150,13 +149,12 @@ public class EgovGroupManageController {
 	 * 화면에 조회된 그룹의 기본정보를 수정하여 항목의 정합성을 체크하고 수정된 데이터를 데이터베이스에 반영
 	 * @param groupManage GroupManage
 	 * @return String
-	 * @exception Exception
 	 */     
     @RequestMapping(value="/sec/gmt/EgovGroupUpdate.do", method = RequestMethod.POST)
 	public String updateGroup(@Valid @ModelAttribute("groupManage") GroupManage groupManage, 
 			                   BindingResult bindingResult,
                                SessionStatus status, 
-                               Model model) throws Exception {
+                               Model model) {
     	
     	// zzz validation 처리 필요
     	if (bindingResult.hasErrors()) { 
@@ -173,12 +171,11 @@ public class EgovGroupManageController {
 	 * 불필요한 그룹정보를 화면에 조회하여 데이터베이스에서 삭제
 	 * @param groupManage GroupManage
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value="/sec/gmt/EgovGroupDelete.do", method = RequestMethod.POST)
 	public String deleteGroup(@ModelAttribute("groupManage") GroupManage groupManage, 
                              SessionStatus status, 
-                             Model model) throws Exception {
+                             Model model) {
 		egovGroupManageService.deleteGroup(groupManage);
 		status.setComplete();
 		model.addAttribute("message", egovMessageSource.getMessage("success.common.delete"));
@@ -190,13 +187,12 @@ public class EgovGroupManageController {
 	 * @param groupIds String
 	 * @param groupManage GroupManage
 	 * @return String
-	 * @exception Exception
 	 */   
 	@RequestMapping(value="/sec/gmt/EgovGroupListDelete.do", method = RequestMethod.POST)
 	public String deleteGroupList(@RequestParam("groupIds") String groupIds,
 			                      @ModelAttribute("groupManage") GroupManage groupManage, 
 	                               SessionStatus status, 
-	                               Model model) throws Exception {
+	                               Model model) {
     	String [] strGroupIds = groupIds.split(";");
     	for(int i=0; i<strGroupIds.length;i++) {
     		groupManage.setGroupId(strGroupIds[i]);
@@ -210,11 +206,9 @@ public class EgovGroupManageController {
     /**
 	 * 그룹팝업 화면 이동
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping("/sec/gmt/EgovGroupSearchView.do")
-    public String selectGroupSearchView()
-            throws Exception {
+    public String selectGroupSearchView() {
         return "/sec/gmt/EgovGroupSearch";
     }   
 	    
@@ -222,11 +216,10 @@ public class EgovGroupManageController {
 	 * 시스템사용 목적별 그룹 목록 조회
 	 * @param groupManageVO GroupManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/gmt/EgovGroupSearchList.do")
 	public String selectGroupSearchList(@ModelAttribute("groupManageVO") GroupManageVO groupManageVO, 
-                                   ModelMap model) throws Exception {
+                                   ModelMap model) {
     	/** paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(groupManageVO.getPageIndex());

@@ -72,10 +72,9 @@ public class EgovFaqManageController {
      * 개별 배포시 메인메뉴를 조회한다.
      * @param model
      * @return	"/uss/olh/faq/"
-     * @throws Exception
      */
     @RequestMapping(value="/uss/olh/faq/EgovMain.do")
-    public String EgovMain(ModelMap model) throws Exception {
+    public String EgovMain(ModelMap model) {
     	model.addAttribute("mainContents", "mainContentsSampleValue");
     	return "/uss/olh/faq/EgovMain";
     }
@@ -84,10 +83,9 @@ public class EgovFaqManageController {
      * 메뉴를 조회한다.
      * @param model
      * @return	"/uss/olh/faq/EgovLeft"
-     * @throws Exception
      */
     @RequestMapping(value="/uss/olh/faq/EgovLeft.do")
-    public String EgovLeft(ModelMap model) throws Exception {
+    public String EgovLeft(ModelMap model) {
     	model.addAttribute("leftContents", "leftContentsSampleValue");
     	return "/uss/olh/faq/EgovLeft";
     }
@@ -97,10 +95,9 @@ public class EgovFaqManageController {
      * @param searchVO
      * @param model
      * @return	"/uss/olh/faq/EgovFaqListInqire"
-     * @throws Exception
      */
     @RequestMapping(value="/uss/olh/faq/FaqListInqire.do")
-    public String selectFaqList(@ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
+    public String selectFaqList(@ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) {
     		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
     		request.getSession().setAttribute("menuNo", "4000000");
     	
@@ -133,12 +130,11 @@ public class EgovFaqManageController {
      * @param searchVO
      * @param model
      * @return	"/uss/olh/faq/EgovFaqDetailInqire"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqListDetailInqire.do")
     public String	selectFaqListDetail(FaqManageVO faqManageVO,
             @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
-            ModelMap model, HttpServletRequest request) throws Exception {
+            ModelMap model, HttpServletRequest request) {
 
 		FaqManageVO vo = faqManageService.selectFaqListDetail(faqManageVO);
 
@@ -174,13 +170,11 @@ public class EgovFaqManageController {
      * @param faqManageVO
      * @param searchVO
      * @return	"forward:/uss/olh/faq/FaqListDetailInqire.do"
-     * @throws Exception
      */
     @RequestMapping("/uss/olh/faq/FaqInqireCoUpdt.do")
     public String updateFaqInqireCo(
             FaqManageVO faqManageVO,
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO)
-            throws Exception {
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO) {
     	LoginVO	loginVO;
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
@@ -207,14 +201,12 @@ public class EgovFaqManageController {
      * @param searchVO
      * @param model
      * @return	"/uss/olh/faq/EgovFaqCnRegist"
-     * @throws Exception
      */
     // 26.08.18 보안취약점 조치 : FAQ는 관리자가 관리하는 공용 안내 콘텐츠이므로 관리자 전용으로 제한한다.
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/FaqCnRegistView.do")
     public String insertFaqCnView(
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO, Model model)
-            throws Exception {
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO, Model model) {
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
@@ -233,7 +225,6 @@ public class EgovFaqManageController {
      * @param faqManageVO
      * @param bindingResult
      * @return	"forward:/uss/olh/faq/FaqListInqire.do"
-     * @throws Exception
      */
     // 26.08.18 보안취약점 조치 : 관리자 전용으로 제한.
     @RequireAdmin
@@ -242,8 +233,7 @@ public class EgovFaqManageController {
     		final MultipartHttpServletRequest multiRequest,		// 첨부파일을 위한...
             @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
             @Valid @ModelAttribute("faqManageVO") FaqManageVO faqManageVO,
-            BindingResult bindingResult)
-            throws Exception {
+            BindingResult bindingResult) {
 
 		if(bindingResult.hasErrors()){
 			return "/uss/olh/faq/EgovFaqCnRegist";
@@ -298,14 +288,12 @@ public class EgovFaqManageController {
      * @param searchVO
      * @param model
      * @return	"/uss/olh/faq/EgovFaqCnUpdt"
-     * @throws Exception
      */
     // 26.08.18 보안취약점 조치 : 관리자 전용으로 제한.
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/FaqCnUpdtView.do")
     public String updateFaqCnView(@RequestParam("faqId") String faqId ,
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request)
-            throws Exception {
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) {
     	
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
@@ -336,7 +324,6 @@ public class EgovFaqManageController {
      * @param bindingResult
      * @param model
      * @return	"forward:/uss/olh/faq/FaqListInqire.do"
-     * @throws Exception
      */
     // 26.08.18 보안취약점 조치 : 관리자 전용으로 제한. 기존에는 인증·소유자 검증이 모두 없었다.
     @RequireAdmin
@@ -346,8 +333,7 @@ public class EgovFaqManageController {
             @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
             @Valid @ModelAttribute("faqManageVO") FaqManageVO faqManageVO,
             BindingResult bindingResult,
-            ModelMap model)
-            throws Exception {
+            ModelMap model) {
 
 		if(bindingResult.hasErrors()){
 			return "/uss/olh/faq/EgovFaqCnUpdt";
@@ -408,15 +394,13 @@ public class EgovFaqManageController {
      * @param faqManageVO
      * @param searchVO
      * @return	"forward:/uss/olh/faq/FaqListInqire.do"
-     * @throws Exception
      */
     // 26.08.18 보안취약점 조치 : 관리자 전용으로 제한. 기존에는 인증 검증이 없어 익명 삭제가 가능했다.
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/FaqCnDelete.do")
     public String deleteFaqCn(
             FaqManageVO faqManageVO,
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO)
-            throws Exception {
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO) {
 
 
     	// 첨부파일 삭제를 위한 ID 생성 start....

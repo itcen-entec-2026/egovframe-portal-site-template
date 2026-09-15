@@ -58,14 +58,12 @@ public class EgovIndvdlInfoPolicyController {
      * @param indvdlInfoPolicy
      * @param model
      * @return "/uss/sam/ipm/EgovOnlinePollList"
-     * @throws Exception
      */
     @SuppressWarnings("unused")
 	@RequestMapping(value = "/uss/sam/ipm/listIndvdlInfoPolicy.do")
     public String EgovIndvdlInfoPolicyList(
             @ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map <String, Object> commandMap,
-            IndvdlInfoPolicy indvdlInfoPolicy, ModelMap model)
-            throws Exception {
+            IndvdlInfoPolicy indvdlInfoPolicy, ModelMap model) {
 
         String sSearchMode = commandMap.get("searchMode") == null ? "" : (String)commandMap.get("searchMode");
 
@@ -102,13 +100,12 @@ public class EgovIndvdlInfoPolicyController {
      * @param model
      * @return
      *         "/uss/sam/ipm/EgovOnlinePollDetail"
-     * @throws Exception
      */
     @RequestMapping(value = "/uss/sam/ipm/detailIndvdlInfoPolicy.do")
     public String EgovIndvdlInfoPolicyDetail(
             @ModelAttribute("searchVO") ComDefaultVO searchVO,
             IndvdlInfoPolicy indvdlInfoPolicy, @RequestParam Map <String, Object> commandMap,
-            ModelMap model) throws Exception {
+            ModelMap model) {
 
         String sLocationUrl = "/uss/sam/ipm/EgovIndvdlInfoPolicyDetail";
 
@@ -134,14 +131,13 @@ public class EgovIndvdlInfoPolicyController {
      * @param model
      * @return
      *         "/uss/sam/ipm/EgovOnlinePollUpdt"
-     * @throws Exception
      */
     @RequestMapping(value = "/uss/sam/ipm/updtIndvdlInfoPolicy.do")
     public String EgovIndvdlInfoPolicyModify(
             @ModelAttribute("searchVO") ComDefaultVO searchVO,
             @RequestParam Map <String, Object> commandMap,
             @Valid @ModelAttribute("indvdlInfoPolicy") IndvdlInfoPolicy indvdlInfoPolicy,
-            BindingResult bindingResult, ModelMap model) throws Exception {
+            BindingResult bindingResult, ModelMap model) {
         // 0. Spring Security 사용자권한 처리
         Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
         if (!isAuthenticated) {
@@ -190,14 +186,13 @@ public class EgovIndvdlInfoPolicyController {
      * @param model
      * @return
      *         "/uss/sam/ipm/EgovOnlinePollRegist"
-     * @throws Exception
      */
     @RequestMapping(value = "/uss/sam/ipm/registIndvdlInfoPolicy.do")
     public String EgovIndvdlInfoPolicyRegist(
             @ModelAttribute("searchVO") ComDefaultVO searchVO,
             @RequestParam Map <String, Object> commandMap,
             @Valid @ModelAttribute("indvdlInfoPolicy") IndvdlInfoPolicy indvdlInfoPolicy,
-            BindingResult bindingResult, ModelMap model) throws Exception {
+            BindingResult bindingResult, ModelMap model) {
         // 0. Spring Security 사용자권한 처리
         Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
         if (!isAuthenticated) {

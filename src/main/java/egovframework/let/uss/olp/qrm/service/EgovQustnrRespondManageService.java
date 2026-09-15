@@ -26,46 +26,40 @@ public interface EgovQustnrRespondManageService {
 	 * 응답자정보 목록을 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
-	public List<?> selectQustnrRespondManageList(ComDefaultVO searchVO) throws Exception;
+	public List<?> selectQustnrRespondManageList(ComDefaultVO searchVO);
 
     /**
 	 * 응답자정보를(을) 상세조회 한다.
 	 * @param qustnrRespondManageVO - 응답자정보 정보 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
-	public List<?> selectQustnrRespondManageDetail(QustnrRespondManageVO qustnrRespondManageVO) throws Exception;
+	public List<?> selectQustnrRespondManageDetail(QustnrRespondManageVO qustnrRespondManageVO);
 
     /**
 	 * 응답자정보를(을) 목록 전체 건수를(을) 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return int
-	 * @throws Exception
 	 */
-	public int selectQustnrRespondManageListCnt(ComDefaultVO searchVO) throws Exception;
+	public int selectQustnrRespondManageListCnt(ComDefaultVO searchVO);
 
     /**
 	 * 응답자정보를(을) 등록한다.
 	 * @param qustnrRespondManageVO - 응답자정보 정보 담김 VO
-	 * @throws Exception
 	 */
-	void  insertQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception;
+	void  insertQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO);
 
     /**
 	 * 응답자정보를(을) 수정한다.
 	 * @param qustnrRespondManageVO - 응답자정보 정보 담김 VO
-	 * @throws Exception
 	 */
-	void  updateQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception;
+	void  updateQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO);
 
     /**
 	 * 응답자정보를(을) 삭제한다.
 	 * @param qustnrRespondManageVO - 응답자정보 정보 담김 VO
-	 * @throws Exception
 	 */
-	void  deleteQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception;
+	void  deleteQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO);
 
 
 }

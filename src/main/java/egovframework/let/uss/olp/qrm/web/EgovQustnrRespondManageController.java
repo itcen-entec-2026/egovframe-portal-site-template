@@ -69,7 +69,6 @@ public class EgovQustnrRespondManageController {
 	 * @param qustnrRespondManageVO
 	 * @param model
 	 * @return "/uss/olp/qrm/EgovQustnrRespondManageList"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qrm/EgovQustnrRespondManageList.do")
@@ -77,8 +76,7 @@ public class EgovQustnrRespondManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@RequestParam Map <String, Object> commandMap,
 			QustnrRespondManageVO qustnrRespondManageVO,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
 		String sSearchMode = commandMap.get("searchMode") == null ? "" : (String)commandMap.get("searchMode");
 
@@ -121,7 +119,6 @@ public class EgovQustnrRespondManageController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qrm/EgovQustnrRespondManageDetail"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qrm/EgovQustnrRespondManageDetail.do")
@@ -129,8 +126,7 @@ public class EgovQustnrRespondManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			QustnrRespondManageVO qustnrRespondManageVO,
 			@RequestParam Map <String, Object> commandMap,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
 		String sLocationUrl = "/uss/olp/qrm/EgovQustnrRespondManageDetail";
 
@@ -163,7 +159,6 @@ public class EgovQustnrRespondManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qrm/EgovQustnrRespondManageModify"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qrm/EgovQustnrRespondManageModify.do")
@@ -172,8 +167,7 @@ public class EgovQustnrRespondManageController {
 			@RequestParam Map <String, Object> commandMap,
 			@Valid @ModelAttribute("qustnrRespondManageVO") QustnrRespondManageVO qustnrRespondManageVO,
 			BindingResult bindingResult,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
     	// 0. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -231,7 +225,6 @@ public class EgovQustnrRespondManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qrm/EgovQustnrRespondManageRegist"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qrm/EgovQustnrRespondManageRegist.do")
@@ -240,8 +233,7 @@ public class EgovQustnrRespondManageController {
 			@RequestParam Map <String, Object> commandMap,
 			@Valid @ModelAttribute("qustnrRespondManageVO") QustnrRespondManageVO qustnrRespondManageVO,
 			BindingResult bindingResult,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
     	// 0. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();

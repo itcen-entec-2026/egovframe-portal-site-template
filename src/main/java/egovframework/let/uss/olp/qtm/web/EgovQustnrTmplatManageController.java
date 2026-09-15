@@ -1,7 +1,9 @@
 package egovframework.let.uss.olp.qtm.web;
 
+import java.io.IOException;
 import java.util.Map;
 
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -15,9 +17,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import egovframework.com.cmm.ComDefaultVO;
-import egovframework.com.cmm.annotation.RequireAdmin;
 import egovframework.com.cmm.EgovMessageSource;
 import egovframework.com.cmm.LoginVO;
+import egovframework.com.cmm.annotation.RequireAdmin;
 import egovframework.let.uss.olp.qtm.service.EgovQustnrTmplatManageService;
 import egovframework.let.uss.olp.qtm.service.QustnrTmplatManageVO;
 import jakarta.annotation.Resource;
@@ -59,14 +61,14 @@ public class EgovQustnrTmplatManageController {
 	@RequireAdmin
 
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageMain.do")
-	public String EgovQustnrTmplatManageMain(ModelMap model) throws Exception {
+	public String EgovQustnrTmplatManageMain(ModelMap model) {
 		return "/uss/olp/qtm/EgovQustnrTmplatManageMain";
 	}
 
 	@RequireAdmin
 
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageLeft.do")
-	public String EgovQustnrTmplatManageLeft(ModelMap model) throws Exception {
+	public String EgovQustnrTmplatManageLeft(ModelMap model) {
 		return "/uss/olp/qtm/EgovQustnrTmplatManageLeft";
 	}
 
@@ -74,11 +76,10 @@ public class EgovQustnrTmplatManageController {
 	 * 개별 배포시 메인메뉴를 조회한다.
 	 * @param model
 	 * @return	"/uss/sam/cpy/"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/EgovMain.do")
-	public String EgovMain(ModelMap model) throws Exception {
+	public String EgovMain(ModelMap model) {
 		return "/uss/olp/qtm/EgovMain";
 	}
 
@@ -86,11 +87,10 @@ public class EgovQustnrTmplatManageController {
 	 * 메뉴를 조회한다.
 	 * @param model
 	 * @return	"/uss/sam/cpy/EgovLeft"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/EgovLeft.do")
-	public String EgovLeft(ModelMap model) throws Exception {
+	public String EgovLeft(ModelMap model) {
 		return "/uss/olp/qtm/EgovLeft";
 	}
 
@@ -101,12 +101,11 @@ public class EgovQustnrTmplatManageController {
 	 * @param qustnrTmplatManageVO
 	 * @param model
 	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageList"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageList.do")
 	public String EgovQustnrTmplatManageList(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap,
-			QustnrTmplatManageVO qustnrTmplatManageVO, ModelMap model) throws Exception {
+			QustnrTmplatManageVO qustnrTmplatManageVO, ModelMap model) {
 
 		String sCmd = commandMap.get("cmd") == null ? "" : (String) commandMap.get("cmd");
 
@@ -147,13 +146,12 @@ public class EgovQustnrTmplatManageController {
 	 * @param qustnrTmplatManageVO
 	 * @param commandMap
 	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageImg"
-	 * @throws Exception
 	 */
 	@SuppressWarnings("unused")
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageImg.do")
 	public void EgovQustnrTmplatManageImg(HttpServletRequest request, HttpServletResponse response, QustnrTmplatManageVO qustnrTmplatManageVO,
-			@RequestParam Map<String, Object> commandMap) throws Exception {
+			@RequestParam Map<String, Object> commandMap) {
 		
 		Map<?, ?> mapResult = egovQustnrTmplatManageService.selectQustnrTmplatManageTmplatImagepathnm(qustnrTmplatManageVO);
 		byte[] img = (byte[]) mapResult.get("QUSTNR_TMPLAT_IMAGE_INFOPATHNM");
@@ -166,9 +164,13 @@ public class EgovQustnrTmplatManageController {
 
 		response.setHeader("Content-Type", imgtype);
 		response.setHeader("Content-Length", "" + img.length);
-		response.getOutputStream().write(img);
-		response.getOutputStream().flush();
-		response.getOutputStream().close();
+		try {
+			response.getOutputStream().write(img);
+			response.getOutputStream().flush();
+			response.getOutputStream().close();
+		} catch (IOException e) {
+			throw new BaseRuntimeException(e);
+		}
 	}
 
 	/**
@@ -178,12 +180,11 @@ public class EgovQustnrTmplatManageController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageDetail"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageDetail.do")
 	public String EgovQustnrTmplatManageDetail(@ModelAttribute("searchVO") ComDefaultVO searchVO, QustnrTmplatManageVO qustnrTmplatManageVO,
-			@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
+			@RequestParam Map<String, Object> commandMap, ModelMap model) {
 
 		String sLocationUrl = "/uss/olp/qtm/EgovQustnrTmplatManageDetail";
 
@@ -206,13 +207,12 @@ public class EgovQustnrTmplatManageController {
 	 * @param qustnrTmplatManageVO
 	 * @param model
 	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageModify"
-	 * @throws Exception
 	 */
 	@SuppressWarnings("unused")
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageModify.do")
 	public String QustnrTmplatManageModify(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap,
-			QustnrTmplatManageVO qustnrTmplatManageVO, ModelMap model) throws Exception {
+			QustnrTmplatManageVO qustnrTmplatManageVO, ModelMap model) {
 		String sLocationUrl = "/uss/olp/qtm/EgovQustnrTmplatManageModify";
 
 		String sCmd = commandMap.get("cmd") == null ? "" : (String) commandMap.get("cmd");
@@ -231,13 +231,12 @@ public class EgovQustnrTmplatManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageModifyActor"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageModifyActor.do")
 	public String QustnrTmplatManageModifyActor(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@RequestParam Map<String, Object> commandMap, @Valid @ModelAttribute("qustnrTmplatManageVO") QustnrTmplatManageVO qustnrTmplatManageVO, BindingResult bindingResult,
-			ModelMap model) throws Exception {
+			ModelMap model) {
 
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("resultList", egovQustnrTmplatManageService.selectQustnrTmplatManageDetail(qustnrTmplatManageVO));
@@ -269,7 +268,11 @@ public class EgovQustnrTmplatManageController {
 				// 26.03.06 KISA 보안취약점 조치 : null check 추가
 				String originalFilename = file.getOriginalFilename();
 				if (file.getName().equals("qestnrTmplatImage") && originalFilename != null && !originalFilename.isEmpty()) { // 26.03.06 KISA 보안취약점 조치 : null check 추가
-					qustnrTmplatManageVO.setQestnrTmplatImagepathnm(file.getBytes());
+					try {
+						qustnrTmplatManageVO.setQestnrTmplatImagepathnm(file.getBytes());
+					} catch (IOException e) {
+						throw new BaseRuntimeException(e);
+					}
 				}
 			}
 		}
@@ -285,12 +288,11 @@ public class EgovQustnrTmplatManageController {
 	 * @param qustnrTmplatManageVO
 	 * @param model
 	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageRegist"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageRegist.do")
 	public String QustnrTmplatManageRegist(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap,
-			@ModelAttribute("qustnrTmplatManageVO") QustnrTmplatManageVO qustnrTmplatManageVO, ModelMap model) throws Exception {
+			@ModelAttribute("qustnrTmplatManageVO") QustnrTmplatManageVO qustnrTmplatManageVO, ModelMap model) {
 
 		// 0. Spring Security 사용자권한 처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -318,12 +320,11 @@ public class EgovQustnrTmplatManageController {
 	 * @param qustnrTmplatManageVO
 	 * @param model
 	 * @return "/uss/olp/qtm/EgovQustnrTmplatManageRegistActor"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qtm/EgovQustnrTmplatManageRegistActor.do")
 	public String QustnrTmplatManageRegistActor(final MultipartHttpServletRequest multiRequest, @ModelAttribute("searchVO") ComDefaultVO searchVO,
-			@Valid @ModelAttribute("qustnrTmplatManageVO") QustnrTmplatManageVO qustnrTmplatManageVO, BindingResult bindingResult, ModelMap model) throws Exception {
+			@Valid @ModelAttribute("qustnrTmplatManageVO") QustnrTmplatManageVO qustnrTmplatManageVO, BindingResult bindingResult, ModelMap model) {
 		// 0. Spring Security 사용자권한 처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
@@ -348,7 +349,11 @@ public class EgovQustnrTmplatManageController {
 		if (!files.isEmpty()) {
 			for (MultipartFile file : files.values()) {
 				if (file.getName().equals("qestnrTmplatImage")) {
-					qustnrTmplatManageVO.setQestnrTmplatImagepathnm(file.getBytes());
+					try {
+						qustnrTmplatManageVO.setQestnrTmplatImagepathnm(file.getBytes());
+					} catch (IOException e) {
+						throw new BaseRuntimeException(e);
+					}
 				}
 			}
 		}

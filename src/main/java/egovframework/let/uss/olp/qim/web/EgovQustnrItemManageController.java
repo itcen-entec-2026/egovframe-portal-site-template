@@ -64,7 +64,6 @@ public class EgovQustnrItemManageController {
 	 * @param qustnrItemManageVO
 	 * @param model
 	 * @return "/uss/olp/qim/EgovQustnrItemManageListPopup"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageListPopup.do")
@@ -72,8 +71,7 @@ public class EgovQustnrItemManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@RequestParam Map <String, Object> commandMap,
 			QustnrItemManageVO qustnrItemManageVO,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
 		String sCmd = commandMap.get("cmd") == null ? "" : (String)commandMap.get("cmd");
 		if(sCmd.equals("del")){
@@ -113,7 +111,6 @@ public class EgovQustnrItemManageController {
 	 * @param qustnrItemManageVO
 	 * @param model
 	 * @return "/uss/olp/qim/EgovQustnrItemManageList"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageList.do")
@@ -121,8 +118,7 @@ public class EgovQustnrItemManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@RequestParam Map <String, Object> commandMap,
 			QustnrItemManageVO qustnrItemManageVO,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
 		String sSearchMode = commandMap.get("searchMode") == null ? "" : (String)commandMap.get("searchMode");
 
@@ -165,7 +161,6 @@ public class EgovQustnrItemManageController {
 	 * @param commandMap
 	 * @param model
 	 * @return  "/uss/olp/qim/EgovQustnrItemManageDetail"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageDetail.do")
@@ -173,8 +168,7 @@ public class EgovQustnrItemManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			QustnrItemManageVO qustnrItemManageVO,
 			@RequestParam Map <String, Object> commandMap,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
 		String sLocationUrl = "/uss/olp/qim/EgovQustnrItemManageDetail";
 
@@ -198,7 +192,6 @@ public class EgovQustnrItemManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qim/EgovQustnrItemManageModify"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageModify.do")
@@ -207,8 +200,7 @@ public class EgovQustnrItemManageController {
 			@RequestParam Map <String, Object> commandMap,
 			@Valid @ModelAttribute("qustnrItemManageVO") QustnrItemManageVO qustnrItemManageVO,
 			BindingResult bindingResult,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
     	// 0. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
@@ -264,7 +256,6 @@ public class EgovQustnrItemManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qim/EgovQustnrItemManageRegist"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qim/EgovQustnrItemManageRegist.do")
@@ -273,8 +264,7 @@ public class EgovQustnrItemManageController {
 			@RequestParam Map <String, Object> commandMap,
 			@Valid @ModelAttribute("qustnrItemManageVO") QustnrItemManageVO qustnrItemManageVO,
 			BindingResult bindingResult,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
     	// 0. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {

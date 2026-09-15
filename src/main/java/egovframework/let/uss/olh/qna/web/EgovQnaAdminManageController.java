@@ -74,11 +74,10 @@ public class EgovQnaAdminManageController {
 	 * 개별 배포시 메인메뉴를 조회한다.
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olh/qna/admin/EgovMain.do")
-	public String EgovMain(ModelMap model) throws Exception {
+	public String EgovMain(ModelMap model) {
 		return "/uss/olh/qna/admin/EgovMain";
 	}
 
@@ -86,11 +85,10 @@ public class EgovQnaAdminManageController {
 	 * 메뉴를 조회한다.
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/EgovLeft"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olh/qna/admin/EgovLeft.do")
-	public String EgovLeft(ModelMap model) throws Exception {
+	public String EgovLeft(ModelMap model) {
 		return "/uss/olh/qna/admin/EgovLeft";
 	}
 
@@ -99,11 +97,10 @@ public class EgovQnaAdminManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/EgovQnaListInqire"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olh/qna/admin/QnaListInqire.do")
-	public String selectQnaList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+	public String selectQnaList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) {
 
 		/** EgovPropertyService.SiteList */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
@@ -147,12 +144,11 @@ public class EgovQnaAdminManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/EgovQnaDetailInqire"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qna/admin/QnaDetailInqire.do")
 	public String selectQnaListDetail(QnaManageVO qnaManageVO,
-			@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+			@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) {
 
 		decryptQaId(qnaManageVO);
 		QnaManageVO vo = qnaManageService.selectQnaListDetail(qnaManageVO);
@@ -173,11 +169,10 @@ public class EgovQnaAdminManageController {
 	 * @param qnaManageVO
 	 * @param searchVO
 	 * @return	"forward:/uss/olh/qna/admin/QnaDetailInqire.do"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qna/admin/QnaInqireCoUpdt.do")
-	public String updateQnaInqireCo(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) throws Exception {
+	public String updateQnaInqireCo(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) {
 
 		decryptQaId(qnaManageVO);
 		qnaManageService.updateQnaInqireCo(qnaManageVO);
@@ -192,11 +187,10 @@ public class EgovQnaAdminManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return	/uss/olh/qna/admin/EgovLoginRealnmChoice
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qna/admin/LoginRealnmChoice.do")
-	public String selectLoginRealnmChoice(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) throws Exception {
+	public String selectLoginRealnmChoice(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) {
 
 		model.addAttribute("QnaManageVO", new QnaManageVO());
 
@@ -209,11 +203,10 @@ public class EgovQnaAdminManageController {
 	 * @param qnaManageVO
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/EgovQnaCnRegist"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qna/admin/QnaCnRegistView.do")
-	public String insertQnaCnView(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, QnaManageVO qnaManageVO, Model model) throws Exception {
+	public String insertQnaCnView(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, QnaManageVO qnaManageVO, Model model) {
 
 		// 인증여부 체크
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -246,12 +239,11 @@ public class EgovQnaAdminManageController {
 	 * @param qnaManageVO
 	 * @param bindingResult
 	 * @return	"forward:/uss/olh/qna/admin/QnaListInqire.do"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qna/admin/QnaCnRegist.do")
 	public String insertQnaCn(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, @Valid @ModelAttribute("qnaManageVO") QnaManageVO qnaManageVO, BindingResult bindingResult,
-			ModelMap model) throws Exception {
+			ModelMap model) {
 
 		if (bindingResult.hasErrors()) {
 			return "/uss/olh/qna/admin/EgovQnaCnRegist";
@@ -278,11 +270,10 @@ public class EgovQnaAdminManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/EgovQnaCnUpdt
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qna/admin/QnaCnUpdtView.do")
-	public String updateQnaCnView(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+	public String updateQnaCnView(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) {
 
 		decryptQaId(qnaManageVO);
 		QnaManageVO vo = qnaManageService.selectQnaListDetail(qnaManageVO);
@@ -307,12 +298,10 @@ public class EgovQnaAdminManageController {
 	 * @param qnaManageVO
 	 * @param bindingResult
 	 * @return	"forward:/uss/olh/qna/admin/QnaListInqire.do"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qna/admin/QnaCnUpdt.do")
-	public String updateQnaCn(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, @Valid @ModelAttribute("qnaManageVO") QnaManageVO qnaManageVO, BindingResult bindingResult)
-			throws Exception {
+	public String updateQnaCn(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, @Valid @ModelAttribute("qnaManageVO") QnaManageVO qnaManageVO, BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 			return "/uss/olh/qna/admin/EgovQnaCnUpdt";
@@ -352,11 +341,10 @@ public class EgovQnaAdminManageController {
 	 * @param qnaManageVO
 	 * @param searchVO
 	 * @return	"forward:/uss/olh/qna/admin/QnaListInqire.do"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qna/admin/QnaCnDelete.do")
-	public String deleteQnaCn(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) throws Exception {
+	public String deleteQnaCn(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, Model model) {
 		
 		// 인증여부 체크
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -378,11 +366,10 @@ public class EgovQnaAdminManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/EgovQnaAnswerListInqire"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olh/qnm/admin/QnaAnswerListInqire.do")
-	public String selectQnaAnswerList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+	public String selectQnaAnswerList(@ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) {
 
 		/** EgovPropertyService.SiteList */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
@@ -413,11 +400,10 @@ public class EgovQnaAdminManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/EgovQnaAnswerDetailInqire"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qnm/admin/QnaAnswerDetailInqire.do")
-	public String selectQnaAnswerListDetail(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+	public String selectQnaAnswerListDetail(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) {
 
 		decryptQaId(qnaManageVO);
 		QnaManageVO vo = qnaManageService.selectQnaListDetail(qnaManageVO);
@@ -433,11 +419,10 @@ public class EgovQnaAdminManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return	"/uss/olh/qna/admin/EgovQnaCnAnswerUpdt"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qnm/admin/QnaCnAnswerUpdtView.do")
-	public String updateQnaCnAnswerView(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) throws Exception {
+	public String updateQnaCnAnswerView(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO, ModelMap model) {
 
 		// 공통코드를 가져오기 위한 Vo
 		ComDefaultCodeVO vo = new ComDefaultCodeVO();
@@ -456,11 +441,10 @@ public class EgovQnaAdminManageController {
 	 * @param qnaManageVO
 	 * @param searchVO
 	 * @return	"forward:/uss/olh/qnm/admin/QnaAnswerListInqire.do"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/olh/qnm/admin/QnaCnAnswerUpdt.do")
-	public String updateQnaCnAnswer(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) throws Exception {
+	public String updateQnaCnAnswer(QnaManageVO qnaManageVO, @ModelAttribute("searchVO") QnaManageDefaultVO searchVO) {
 
 		decryptQaId(qnaManageVO);
 

@@ -80,11 +80,10 @@ public class EgovQustnrRespondInfoController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/mgt/template/template"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/template/template.do")
 	public String EgovQustnrRespondInfoManageTemplate(@ModelAttribute("searchVO") ComDefaultVO searchVO,
-			HttpServletRequest request, @RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
+			HttpServletRequest request, @RequestParam Map<String, Object> commandMap, ModelMap model) {
 
 		// templateUrl이 검증 없이 Spring 뷰네임으로 그대로 반환되면 forward:/redirect: 접두사를 통해
 		// WEB-INF 내부 자원 열람이나 FORWARD 기반 보안 필터 우회로 이어질 수 있으므로,
@@ -141,11 +140,10 @@ public class EgovQustnrRespondInfoController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qnn/EgovQustnrRespondInfoManageStatistics"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qnn/EgovQustnrRespondInfoManageStatistics.do")
 	public String EgovQustnrRespondInfoManageStatistics(@ModelAttribute("searchVO") ComDefaultVO searchVO,
-			HttpServletRequest request, @RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
+			HttpServletRequest request, @RequestParam Map<String, Object> commandMap, ModelMap model) {
 
 		String sLocationUrl = "/uss/olp/qnn/EgovQustnrRespondInfoManageStatistics";
 
@@ -190,12 +188,11 @@ public class EgovQustnrRespondInfoController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qnn/EgovQustnrRespondInfoManageList"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qnn/EgovQustnrRespondInfoManageList.do")
 	public String EgovQustnrRespondInfoManageList(@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			HttpServletRequest request, HttpServletResponse response, @RequestParam Map<String, Object> commandMap,
-			ModelMap model) throws Exception {
+			ModelMap model) {
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "4000000");
 		/** EgovPropertyService.sample */
@@ -233,11 +230,10 @@ public class EgovQustnrRespondInfoController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qnn/EgovQustnrRespondInfoManageRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qnn/EgovQustnrRespondInfoManageRegist.do")
 	public String EgovQustnrRespondInfoManageRegist(@ModelAttribute("searchVO") ComDefaultVO searchVO,
-			@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
+			@RequestParam Map<String, Object> commandMap, ModelMap model) {
 		// 0. Spring Security 사용자권한 처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
@@ -413,12 +409,11 @@ public class EgovQustnrRespondInfoController {
 	 * @param qustnrRespondInfoVO
 	 * @param model
 	 * @return "/uss/olp/qri/EgovQustnrRespondInfoList"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoList.do")
 	public String EgovQustnrRespondInfoList(@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			HttpServletRequest request, @RequestParam Map<String, Object> commandMap,
-			QustnrRespondInfoVO qustnrRespondInfoVO, ModelMap model) throws Exception {
+			QustnrRespondInfoVO qustnrRespondInfoVO, ModelMap model) {
 
 		// 0. Spring Security 사용자권한 처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -478,12 +473,10 @@ public class EgovQustnrRespondInfoController {
 	 * @param commandMap
 	 * @param model
 	 * @return
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoDetail.do")
 	public String EgovQustnrRespondInfoDetail(@ModelAttribute("searchVO") ComDefaultVO searchVO,
-			QustnrRespondInfoVO qustnrRespondInfoVO, @RequestParam Map<String, Object> commandMap, ModelMap model)
-			throws Exception {
+			QustnrRespondInfoVO qustnrRespondInfoVO, @RequestParam Map<String, Object> commandMap, ModelMap model) {
 
 		if (!EgovUserDetailsHelper.isAuthenticated()) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
@@ -504,11 +497,10 @@ public class EgovQustnrRespondInfoController {
 	 * @param qustnrRespondInfoVO
 	 * @param model
 	 * @return "redirect:/uss/olp/qri/EgovQustnrRespondInfoList.do"
-	 * @throws Exception
 	 */
 	@PostMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoDelete.do")
 	public String EgovQustnrRespondInfoDelete(@ModelAttribute("searchVO") ComDefaultVO searchVO,
-			QustnrRespondInfoVO qustnrRespondInfoVO, ModelMap model) throws Exception {
+			QustnrRespondInfoVO qustnrRespondInfoVO, ModelMap model) {
 
 		if (!EgovUserDetailsHelper.isAuthenticated()) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
@@ -527,9 +519,8 @@ public class EgovQustnrRespondInfoController {
 	 * 응답자결과(설문조사)의 소유자(또는 관리자)만 접근할 수 있도록 검증한다 (IDOR 방지).
 	 *
 	 * @param qustnrRespondInfoVO
-	 * @throws Exception
 	 */
-	private void assertCanAccessRespondInfo(QustnrRespondInfoVO qustnrRespondInfoVO) throws Exception {
+	private void assertCanAccessRespondInfo(QustnrRespondInfoVO qustnrRespondInfoVO) {
 		String ownerId = egovQustnrRespondInfoService.selectFrstRegisterIdByRespondId(qustnrRespondInfoVO);
 		QustnrRespondInfoVO authVo = new QustnrRespondInfoVO();
 		authVo.setFrstRegisterId(ownerId);
@@ -546,13 +537,12 @@ public class EgovQustnrRespondInfoController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qri/EgovQustnrRespondInfoModify"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoModify.do")
 	public String QustnrRespondInfoModify(@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@RequestParam Map<String, Object> commandMap, HttpServletRequest request,
 			@Valid @ModelAttribute("qustnrRespondInfoVO") QustnrRespondInfoVO qustnrRespondInfoVO, BindingResult bindingResult,
-			ModelMap model) throws Exception {
+			ModelMap model) {
 
 		// 0. Spring Security 사용자권한 처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -610,13 +600,12 @@ public class EgovQustnrRespondInfoController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qri/EgovQustnrRespondInfoRegist"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/olp/qri/EgovQustnrRespondInfoRegist.do")
 	public String QustnrRespondInfoRegist(@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@RequestParam Map<String, String> commandMap, HttpServletRequest request,
 			@Valid @ModelAttribute("qustnrRespondInfoVO") QustnrRespondInfoVO qustnrRespondInfoVO, BindingResult bindingResult,
-			ModelMap model) throws Exception {
+			ModelMap model) {
 		// 0. Spring Security 사용자권한 처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {

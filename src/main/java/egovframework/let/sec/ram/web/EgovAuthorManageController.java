@@ -53,10 +53,9 @@ public class EgovAuthorManageController {
 	/**
 	 * 권한 목록화면 이동
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping("/sec/ram/EgovAuthorListView.do")
-	public String selectAuthorListView() throws Exception {
+	public String selectAuthorListView() {
 		return "/sec/ram/EgovAuthorManage";
 	}
 
@@ -64,10 +63,9 @@ public class EgovAuthorManageController {
 	 * 권한 목록을 조회한다
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorList.do")
-	public String selectAuthorList(@ModelAttribute("authorManageVO") AuthorManageVO authorManageVO, ModelMap model) throws Exception {
+	public String selectAuthorList(@ModelAttribute("authorManageVO") AuthorManageVO authorManageVO, ModelMap model) {
 
 		/** paging */
 		PaginationInfo paginationInfo = new PaginationInfo();
@@ -109,10 +107,9 @@ public class EgovAuthorManageController {
 	/**
 	 * 권한 등록화면 이동
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping("/sec/ram/EgovAuthorInsertView.do")
-	public String insertAuthorView() throws Exception {
+	public String insertAuthorView() {
 		return "/sec/ram/EgovAuthorInsert";
 	}
 
@@ -121,10 +118,9 @@ public class EgovAuthorManageController {
 	 * @param authorManage AuthorManage
 	 * @param bindingResult BindingResult
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorInsert.do", method = RequestMethod.POST)
-	public String insertAuthor(@Valid @ModelAttribute("authorManage") AuthorManage authorManage, BindingResult bindingResult, SessionStatus status, ModelMap model) throws Exception {
+	public String insertAuthor(@Valid @ModelAttribute("authorManage") AuthorManage authorManage, BindingResult bindingResult, SessionStatus status, ModelMap model) {
 
 		if (bindingResult.hasErrors()) {
 			return "/sec/ram/EgovAuthorInsert";
@@ -141,10 +137,9 @@ public class EgovAuthorManageController {
 	 * @param authorManage AuthorManage
 	 * @param bindingResult BindingResult
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorUpdate.do", method = RequestMethod.POST)
-	public String updateAuthor(@Valid @ModelAttribute("authorManage") AuthorManage authorManage, BindingResult bindingResult, SessionStatus status, Model model) throws Exception {
+	public String updateAuthor(@Valid @ModelAttribute("authorManage") AuthorManage authorManage, BindingResult bindingResult, SessionStatus status, Model model) {
 
 		if (bindingResult.hasErrors()) {
 			return "/sec/ram/EgovAuthorUpdate";
@@ -160,10 +155,9 @@ public class EgovAuthorManageController {
 	 * 권한 세부정보를 삭제한다.
 	 * @param authorManage AuthorManage
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorDelete.do", method = RequestMethod.POST)
-	public String deleteAuthor(@ModelAttribute("authorManage") AuthorManage authorManage, SessionStatus status, Model model) throws Exception {
+	public String deleteAuthor(@ModelAttribute("authorManage") AuthorManage authorManage, SessionStatus status, Model model) {
 
 		egovAuthorManageService.deleteAuthor(authorManage);
 		status.setComplete();
@@ -176,11 +170,9 @@ public class EgovAuthorManageController {
 	 * @param authorCodes String
 	 * @param authorManage AuthorManage
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value = "/sec/ram/EgovAuthorListDelete.do", method = RequestMethod.POST)
-	public String deleteAuthorList(@RequestParam("authorCodes") String authorCodes, @ModelAttribute("authorManage") AuthorManage authorManage, SessionStatus status, Model model)
-			throws Exception {
+	public String deleteAuthorList(@RequestParam("authorCodes") String authorCodes, @ModelAttribute("authorManage") AuthorManage authorManage, SessionStatus status, Model model) {
 
 		String[] strAuthorCodes = authorCodes.split(";");
 		for (int i = 0; i < strAuthorCodes.length; i++) {
@@ -195,10 +187,9 @@ public class EgovAuthorManageController {
 	/**
 	 * 권한제한 화면 이동
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping("/sec/ram/accessDenied.do")
-	public String accessDenied() throws Exception {
+	public String accessDenied() {
 		return "sec/accessDenied";
 	}
 }

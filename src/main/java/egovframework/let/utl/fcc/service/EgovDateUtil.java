@@ -281,8 +281,8 @@ public class EgovDateUtil {
 				simpledateformat.setTimeZone(TimeZone.getTimeZone(strTimeZone));
 			}
 			simpledateformat = new SimpleDateFormat(_toDateFormat, Locale.getDefault());
-		} catch (ParseException exception) {
-			LOGGER.debug("{}", exception);
+		} catch (ParseException parseException) {
+			LOGGER.error("simpledateformat.parse", parseException);
 		}
 		if (simpledateformat != null && simpledateformat.format(date) != null) {
 			return simpledateformat.format(date);

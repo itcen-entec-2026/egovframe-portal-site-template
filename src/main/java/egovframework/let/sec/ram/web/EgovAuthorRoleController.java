@@ -49,10 +49,9 @@ public class EgovAuthorRoleController {
     /**
 	 * 권한 롤 관계 화면 이동
 	 * @return "/sec/ram/EgovDeptAuthorList"
-	 * @exception Exception
 	 */
     @RequestMapping("/sec/ram/EgovAuthorRoleListView.do")
-    public String selectAuthorRoleListView() throws Exception {
+    public String selectAuthorRoleListView() {
 
         return "/sec/ram/EgovAuthorRoleManage";
     } 
@@ -62,11 +61,10 @@ public class EgovAuthorRoleController {
 	 * 
 	 * @param authorRoleManageVO AuthorRoleManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/ram/EgovAuthorRoleList.do")
 	public String selectAuthorRoleList(@ModelAttribute("authorRoleManageVO") AuthorRoleManageVO authorRoleManageVO,
-			                            ModelMap model) throws Exception {
+			                            ModelMap model) {
 
     	/** paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
@@ -97,7 +95,6 @@ public class EgovAuthorRoleController {
 	 * @param regYns String
 	 * @param authorRoleManage AuthorRoleManage
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value="/sec/ram/EgovAuthorRoleInsert.do")
 	public String insertAuthorRole(@RequestParam("authorCode") String authorCode,
@@ -105,7 +102,7 @@ public class EgovAuthorRoleController {
 			                       @RequestParam("regYns") String regYns,
 			                       @ModelAttribute("authorRoleManage") AuthorRoleManage authorRoleManage,
 			                         SessionStatus status,
-			                         ModelMap model) throws Exception {
+			                         ModelMap model) {
 		
     	String [] strRoleCodes = roleCodes.split(";");
     	String [] strRegYns = regYns.split(";");

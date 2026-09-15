@@ -3,6 +3,8 @@ package egovframework.let.uss.sam.stp.service.impl;
 import java.util.List;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.springframework.stereotype.Service;
 
@@ -47,13 +49,13 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 글을 조회한다.
 	 * @param vo
 	 * @return 조회한 글
-	 * @exception Exception
 	 */
     @Override
-	public StplatManageVO selectStplatDetail(StplatManageVO vo) throws Exception {
+	public StplatManageVO selectStplatDetail(StplatManageVO vo) {
         StplatManageVO resultVO = stplatManageDAO.selectStplatDetail(vo);
-        if (resultVO == null)
-            throw processException("info.nodata.msg");
+        if (resultVO == null) {
+            throw new BaseRuntimeException(processException("info.nodata.msg"));
+        }
         return resultVO;
     }
 
@@ -61,10 +63,9 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 약관정보 글 목록을 조회한다.
 	 * @param searchVO
 	 * @return 글 목록
-	 * @exception Exception
 	 */
 	@Override
-	public List<?> selectStplatList(StplatManageDefaultVO searchVO) throws Exception {
+	public List<?> selectStplatList(StplatManageDefaultVO searchVO) {
         return stplatManageDAO.selectStplatList(searchVO);
     }
 
@@ -81,12 +82,16 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 	/**
 	 * 약관정보 글을 등록한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void insertStplatCn(StplatManageVO vo) throws Exception {
+	public void insertStplatCn(StplatManageVO vo) {
 
-		String	useStplatId = idgenService.getNextStringId();
+		String useStplatId;
+		try {
+			useStplatId = idgenService.getNextStringId();
+		} catch (FdlException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		vo.setUseStplatId(useStplatId);
 
@@ -96,10 +101,9 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 	/**
 	 * 약관정보 글을 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void updateStplatCn(StplatManageVO vo) throws Exception {
+	public void updateStplatCn(StplatManageVO vo) {
 
     	stplatManageDAO.updateStplatCn(vo);
     }
@@ -107,10 +111,9 @@ public class EgovStplatManageServiceImpl extends EgovAbstractServiceImpl impleme
 	/**
 	 * 약관정보 글을 삭제한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void deleteStplatCn(StplatManageVO vo) throws Exception {
+	public void deleteStplatCn(StplatManageVO vo) {
 
     	stplatManageDAO.deleteStplatCn(vo);
     }

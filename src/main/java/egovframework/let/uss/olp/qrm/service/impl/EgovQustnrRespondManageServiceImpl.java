@@ -3,6 +3,8 @@ package egovframework.let.uss.olp.qrm.service.impl;
 import java.util.List;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.springframework.stereotype.Service;
 
@@ -42,10 +44,9 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 	 * 응답자정보 목록을 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondManageList(ComDefaultVO searchVO) throws Exception{
+	public List<?> selectQustnrRespondManageList(ComDefaultVO searchVO) {
 		return dao.selectQustnrRespondManageList(searchVO);
 	}
 
@@ -53,10 +54,9 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 	 * 응답자정보를(을) 상세조회 한다.
 	 * @param QustnrRespondManage - 회정정보가 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrRespondManageDetail(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
+	public List<?> selectQustnrRespondManageDetail(QustnrRespondManageVO qustnrRespondManageVO) {
 		return dao.selectQustnrRespondManageDetail(qustnrRespondManageVO);
 	}
 
@@ -64,21 +64,24 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 	 * 응답자정보를(을) 목록 전체 건수를(을) 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return int
-	 * @throws Exception
 	 */
 	@Override
-	public int selectQustnrRespondManageListCnt(ComDefaultVO searchVO) throws Exception{
+	public int selectQustnrRespondManageListCnt(ComDefaultVO searchVO) {
 		return dao.selectQustnrRespondManageListCnt(searchVO);
 	}
 
     /**
 	 * 응답자정보를(을) 등록한다.
 	 * @param qustnrRespondManageVO -  응답자정보 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void insertQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception {
-		String sMakeId = idgenService.getNextStringId();
+	public void insertQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) {
+		String sMakeId;
+		try {
+			sMakeId = idgenService.getNextStringId();
+		} catch (FdlException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		qustnrRespondManageVO.setQestnrRespondId(sMakeId);
 
@@ -88,10 +91,9 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
     /**
 	 * 응답자정보를(을) 수정한다.
 	 * @param qustnrRespondManageVO - 응답자정보 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void updateQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
+	public void updateQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) {
 		dao.updateQustnrRespondManage(qustnrRespondManageVO);
 	}
 
@@ -99,10 +101,9 @@ public class EgovQustnrRespondManageServiceImpl extends EgovAbstractServiceImpl 
 	 * 응답자정보를(을) 삭제한다.
 	 * @param qustnrRespondManageVO - 응답자정보 정보가 담긴 VO
 	 * @return
-	 * @throws Exception
 	 */
 	@Override
-	public void deleteQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) throws Exception{
+	public void deleteQustnrRespondManage(QustnrRespondManageVO qustnrRespondManageVO) {
 		dao.deleteQustnrRespondManage(qustnrRespondManageVO);
 	}
 }

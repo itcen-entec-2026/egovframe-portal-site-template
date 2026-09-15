@@ -45,7 +45,7 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 우편번호를 삭제한다.
 	 */
 	@Override
-	public void deleteZip(Zip zip) throws Exception {
+	public void deleteZip(Zip zip) {
 		zipManageDAO.deleteZip(zip);
 	}
 
@@ -53,7 +53,7 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 우편번호 전체를 삭제한다.
 	 */
 	@Override
-	public void deleteAllZip() throws Exception {
+	public void deleteAllZip() {
 		zipManageDAO.deleteAllZip();
 	}
 
@@ -61,18 +61,17 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 우편번호를 등록한다.
 	 */
 	@Override
-	public void insertZip(Zip zip) throws Exception {
+	public void insertZip(Zip zip) {
     	zipManageDAO.insertZip(zip);
 	}
 
 	/**
 	 * 우편번호 엑셀파일을 등록한다.
 	 * @param zip
-	 * @throws Exception
 	 */
 
 	@Override
-	public void insertExcelZip(InputStream file) throws Exception {
+	public void insertExcelZip(InputStream file) {
 //		zipManageDAO.insertExcelZip();
 //		excelZipService.uploadExcel("ZipManageDAO.insertExcelZip", file, 2, (long) 5000);
 	}
@@ -82,7 +81,7 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 우편번호 상세항목을 조회한다.
 	 */
 	@Override
-	public Zip selectZipDetail(Zip zip) throws Exception {
+	public Zip selectZipDetail(Zip zip) {
     	Zip ret = zipManageDAO.selectZipDetail(zip);
     	return ret;
 	}
@@ -91,7 +90,7 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 우편번호 목록을 조회한다.
 	 */
 	@Override
-	public List<?> selectZipList(ZipVO searchVO) throws Exception {
+	public List<?> selectZipList(ZipVO searchVO) {
         return zipManageDAO.selectZipList(searchVO);
 	}
 
@@ -99,7 +98,7 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 우편번호 총 갯수를 조회한다.
 	 */
 	@Override
-	public int selectZipListTotCnt(ZipVO searchVO) throws Exception {
+	public int selectZipListTotCnt(ZipVO searchVO) {
         return zipManageDAO.selectZipListTotCnt(searchVO);
 	}
 
@@ -107,7 +106,7 @@ public class EgovCcmZipManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 우편번호를 수정한다.
 	 */
 	@Override
-	public void updateZip(Zip zip) throws Exception {
+	public void updateZip(Zip zip) {
 		zipManageDAO.updateZip(zip);
 	}
 

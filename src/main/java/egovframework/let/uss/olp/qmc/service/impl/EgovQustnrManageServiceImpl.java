@@ -3,6 +3,8 @@ package egovframework.let.uss.olp.qmc.service.impl;
 import java.util.List;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.springframework.stereotype.Service;
 
@@ -40,10 +42,9 @@ public class EgovQustnrManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 설문템플릿 목록을 조회한다.
 	 * @param qustnrManageVO - 설문관리 정보 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrTmplatManageList(QustnrManageVO qustnrManageVO) throws Exception{
+	public List<?> selectQustnrTmplatManageList(QustnrManageVO qustnrManageVO) {
 		return dao.selectQustnrTmplatManageList(qustnrManageVO);
 	}
 
@@ -52,10 +53,9 @@ public class EgovQustnrManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 설문관리 목록을 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrManageList(ComDefaultVO searchVO) throws Exception{
+	public List<?> selectQustnrManageList(ComDefaultVO searchVO) {
 		return dao.selectQustnrManageList(searchVO);
 	}
 
@@ -63,10 +63,9 @@ public class EgovQustnrManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 설문관리를 상세조회(Model) 한다.
 	 * @param qustnrManageVO - 설문관리 정보 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
     @Override
-	public QustnrManageVO selectQustnrManageDetailModel(QustnrManageVO qustnrManageVO) throws Exception {
+	public QustnrManageVO selectQustnrManageDetailModel(QustnrManageVO qustnrManageVO) {
         return dao.selectQustnrManageDetailModel(qustnrManageVO);
     }
 
@@ -74,10 +73,9 @@ public class EgovQustnrManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 설문관리를(을) 상세조회 한다.
 	 * @param QustnrManage - 회정정보가 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrManageDetail(QustnrManageVO qustnrManageVO) throws Exception{
+	public List<?> selectQustnrManageDetail(QustnrManageVO qustnrManageVO) {
 		return dao.selectQustnrManageDetail(qustnrManageVO);
 	}
 
@@ -85,21 +83,24 @@ public class EgovQustnrManageServiceImpl extends EgovAbstractServiceImpl impleme
 	 * 설문관리를(을) 목록 전체 건수를(을) 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return int
-	 * @throws Exception
 	 */
 	@Override
-	public int selectQustnrManageListCnt(ComDefaultVO searchVO) throws Exception{
+	public int selectQustnrManageListCnt(ComDefaultVO searchVO) {
 		return dao.selectQustnrManageListCnt(searchVO);
 	}
 
     /**
 	 * 설문관리를(을) 등록한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void insertQustnrManage(QustnrManageVO qustnrManageVO) throws Exception {
-		String sMakeId = idgenService.getNextStringId();
+	public void insertQustnrManage(QustnrManageVO qustnrManageVO) {
+		String sMakeId;
+		try {
+			sMakeId = idgenService.getNextStringId();
+		} catch (FdlException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		qustnrManageVO.setQestnrId(sMakeId);
 
@@ -109,20 +110,18 @@ public class EgovQustnrManageServiceImpl extends EgovAbstractServiceImpl impleme
     /**
 	 * 설문관리를(을) 수정한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void updateQustnrManage(QustnrManageVO qustnrManageVO) throws Exception{
+	public void updateQustnrManage(QustnrManageVO qustnrManageVO) {
 		dao.updateQustnrManage(qustnrManageVO);
 	}
 
     /**
 	 * 설문관리를(을) 삭제한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void deleteQustnrManage(QustnrManageVO qustnrManageVO) throws Exception{
+	public void deleteQustnrManage(QustnrManageVO qustnrManageVO) {
 		dao.deleteQustnrManage(qustnrManageVO);
 	}
 }

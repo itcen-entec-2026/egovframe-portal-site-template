@@ -70,7 +70,6 @@ public class EgovQustnrQestnManageController {
      * @param commandMap
      * @param model
      * @return "/uss/olp/qqm/EgovQustnrQestnManageStatistics"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageStatistics.do")
@@ -78,8 +77,7 @@ public class EgovQustnrQestnManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			QustnrQestnManageVO qustnrQestnManageVO,
 			@RequestParam Map <String, Object> commandMap,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
 		String sLocationUrl = "/uss/olp/qqm/EgovQustnrQestnManageStatistics";
 
@@ -103,7 +101,6 @@ public class EgovQustnrQestnManageController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qqm/EgovQustnrQestnManageListPopup"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageListPopup.do")
@@ -111,8 +108,7 @@ public class EgovQustnrQestnManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO,
 			@RequestParam Map <String, Object> commandMap,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
 		String sSearchMode = commandMap.get("searchMode") == null ? "" : (String)commandMap.get("searchMode");
 
@@ -152,7 +148,6 @@ public class EgovQustnrQestnManageController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qqm/EgovQustnrQestnManageList"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageList.do")
@@ -160,8 +155,7 @@ public class EgovQustnrQestnManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO,
 			@RequestParam Map <String, Object> commandMap,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
     	// 0. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
@@ -212,7 +206,6 @@ public class EgovQustnrQestnManageController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qqm/EgovQustnrQestnManageDetail"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageDetail.do")
@@ -220,8 +213,7 @@ public class EgovQustnrQestnManageController {
 			@ModelAttribute("searchVO") ComDefaultVO searchVO,
 			@ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO,
 			@RequestParam Map <String, Object> commandMap,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
 
 		String sLocationUrl = "/uss/olp/qqm/EgovQustnrQestnManageDetail";
 
@@ -254,7 +246,6 @@ public class EgovQustnrQestnManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qqm/EgovQustnrQestnManageModify"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageModify.do")
@@ -263,8 +254,7 @@ public class EgovQustnrQestnManageController {
 			@RequestParam Map <String, Object> commandMap,
 			@Valid @ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO,
 			BindingResult bindingResult,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
     	// 0. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
@@ -338,7 +328,6 @@ public class EgovQustnrQestnManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qqm/EgovQustnrQestnManageRegist"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value="/uss/olp/qqm/EgovQustnrQestnManageRegist.do")
@@ -347,8 +336,7 @@ public class EgovQustnrQestnManageController {
 			@RequestParam Map <String, Object> commandMap,
 			@Valid @ModelAttribute("qustnrQestnManageVO") QustnrQestnManageVO qustnrQestnManageVO,
 			BindingResult bindingResult,
-    		ModelMap model)
-    throws Exception {
+    		ModelMap model) {
     	// 0. Spring Security 사용자권한 처리
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {

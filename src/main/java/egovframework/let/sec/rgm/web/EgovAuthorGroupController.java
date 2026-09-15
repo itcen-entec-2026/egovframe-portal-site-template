@@ -54,10 +54,9 @@ public class EgovAuthorGroupController {
     /**
 	 * 권한 목록화면 이동
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping("/sec/rgm/EgovAuthorGroupListView.do")
-    public String selectAuthorGroupListView() throws Exception {
+    public String selectAuthorGroupListView() {
 
         return "/sec/rgm/EgovAuthorGroupManage";
     }    
@@ -67,12 +66,11 @@ public class EgovAuthorGroupController {
 	 * @param authorGroupVO AuthorGroupVO
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/rgm/EgovAuthorGroupList.do")
 	public String selectAuthorGroupList(@ModelAttribute("authorGroupVO") AuthorGroupVO authorGroupVO,
 			                            @ModelAttribute("authorManageVO") AuthorManageVO authorManageVO,
-			                             ModelMap model) throws Exception {
+			                             ModelMap model) {
 
     	/** paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
@@ -106,7 +104,6 @@ public class EgovAuthorGroupController {
 	 * @param regYns String
 	 * @param authorGroup AuthorGroup
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value="/sec/rgm/EgovAuthorGroupInsert.do")
 	public String insertAuthorGroup(@RequestParam("userIds") String userIds,
@@ -115,7 +112,7 @@ public class EgovAuthorGroupController {
 			                        @RequestParam("mberTyCodes") String mberTyCode,
 			                        @ModelAttribute("authorGroup") AuthorGroup authorGroup,
 			                         SessionStatus status,
-			                         ModelMap model) throws Exception {
+			                         ModelMap model) {
 		
     	String [] strUserIds = userIds.split(";");
     	String [] strAuthorCodes = authorCodes.split(";");
@@ -142,13 +139,12 @@ public class EgovAuthorGroupController {
 	 * @param userIds String
 	 * @param authorGroup AuthorGroup
 	 * @return String
-	 * @exception Exception
 	 */ 
 	@RequestMapping(value="/sec/rgm/EgovAuthorGroupDelete.do")
 	public String deleteAuthorGroup(@RequestParam("userIds") String userIds,
                                     @ModelAttribute("authorGroup") AuthorGroup authorGroup,
                                      SessionStatus status,
-                                     ModelMap model) throws Exception {
+                                     ModelMap model) {
 		
     	String [] strUserIds = userIds.split(";");
     	for(int i=0; i<strUserIds.length;i++) {

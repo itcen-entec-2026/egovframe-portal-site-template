@@ -97,9 +97,6 @@ public class EgovSpringSecurityLoginFilter extends OncePerRequestFilter {
 		} catch (IllegalArgumentException e) {
 			LOGGER.error("Login bridge processing failed", e);
 			forwardLoginFailure(request, response);
-		} catch (Exception e) {
-			LOGGER.error("Login bridge processing failed", e);
-			forwardLoginFailure(request, response);
 		}
 	}
 

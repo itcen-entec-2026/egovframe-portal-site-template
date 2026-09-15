@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.springframework.stereotype.Service;
 
@@ -42,10 +44,9 @@ public class EgovQustnrQestnManageServiceImpl extends EgovAbstractServiceImpl im
 	 * 설문조사 응답자답변내용결과/기타답변내용결과 통계를 조회한다.
 	 * @param Map - 설문지 정보가 담김 Parameter
 	 * @return Map
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrManageStatistics2(Map<?, ?> map) throws Exception{
+	public List<?> selectQustnrManageStatistics2(Map<?, ?> map) {
 		return dao.selectQustnrManageStatistics2(map);
 	}
 
@@ -53,20 +54,18 @@ public class EgovQustnrQestnManageServiceImpl extends EgovAbstractServiceImpl im
 	 * 설문조사 통계를 조회한다.
 	 * @param Map - 설문지 정보가 담김 Parameter
 	 * @return Map
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrManageStatistics(Map<?, ?> map) throws Exception{
+	public List<?> selectQustnrManageStatistics(Map<?, ?> map) {
 		return dao.selectQustnrManageStatistics(map);
 	}
     /**
 	 * 설문지정보 설문제목을 조회한다.
 	 * @param Map - 설문지 정보가 담김 Parameter
 	 * @return Map
-	 * @throws Exception
 	 */
 	@Override
-	public Map<?, ?> selectQustnrManageQestnrSj(Map<?, ?> map) throws Exception{
+	public Map<?, ?> selectQustnrManageQestnrSj(Map<?, ?> map) {
 		return dao.selectQustnrManageQestnrSj(map);
 	}
 
@@ -74,10 +73,9 @@ public class EgovQustnrQestnManageServiceImpl extends EgovAbstractServiceImpl im
 	 * 설문문항 목록을 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrQestnManageList(ComDefaultVO searchVO) throws Exception{
+	public List<?> selectQustnrQestnManageList(ComDefaultVO searchVO) {
 		return dao.selectQustnrQestnManageList(searchVO);
 	}
 
@@ -85,10 +83,9 @@ public class EgovQustnrQestnManageServiceImpl extends EgovAbstractServiceImpl im
 	 * 설문문항를(을) 상세조회 한다.
 	 * @param QustnrQestnManage - 회정정보가 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrQestnManageDetail(QustnrQestnManageVO qustnrQestnManageVO) throws Exception{
+	public List<?> selectQustnrQestnManageDetail(QustnrQestnManageVO qustnrQestnManageVO) {
 		return dao.selectQustnrQestnManageDetail(qustnrQestnManageVO);
 	}
 
@@ -96,21 +93,24 @@ public class EgovQustnrQestnManageServiceImpl extends EgovAbstractServiceImpl im
 	 * 설문문항를(을) 목록 전체 건수를(을) 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return int
-	 * @throws Exception
 	 */
 	@Override
-	public int selectQustnrQestnManageListCnt(ComDefaultVO searchVO) throws Exception{
+	public int selectQustnrQestnManageListCnt(ComDefaultVO searchVO) {
 		return dao.selectQustnrQestnManageListCnt(searchVO);
 	}
 
     /**
 	 * 설문문항를(을) 등록한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void insertQustnrQestnManage(QustnrQestnManageVO qustnrQestnManageVO) throws Exception {
-		String sMakeId = idgenService.getNextStringId();
+	public void insertQustnrQestnManage(QustnrQestnManageVO qustnrQestnManageVO) {
+		String sMakeId;
+		try {
+			sMakeId = idgenService.getNextStringId();
+		} catch (FdlException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		qustnrQestnManageVO.setQestnrQesitmId(sMakeId);
 
@@ -120,20 +120,18 @@ public class EgovQustnrQestnManageServiceImpl extends EgovAbstractServiceImpl im
     /**
 	 * 설문문항를(을) 수정한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void updateQustnrQestnManage(QustnrQestnManageVO qustnrQestnManageVO) throws Exception{
+	public void updateQustnrQestnManage(QustnrQestnManageVO qustnrQestnManageVO) {
 		dao.updateQustnrQestnManage(qustnrQestnManageVO);
 	}
 
     /**
 	 * 설문문항를(을) 삭제한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void deleteQustnrQestnManage(QustnrQestnManageVO qustnrQestnManageVO) throws Exception{
+	public void deleteQustnrQestnManage(QustnrQestnManageVO qustnrQestnManageVO) {
 		dao.deleteQustnrQestnManage(qustnrQestnManageVO);
 	}
 }

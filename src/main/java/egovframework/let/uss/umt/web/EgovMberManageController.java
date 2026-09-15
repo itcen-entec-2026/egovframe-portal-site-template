@@ -1,7 +1,9 @@
 package egovframework.let.uss.umt.web;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.fdl.security.userdetails.util.EgovUserDetailsHelper;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -65,10 +67,9 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건정보
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovMberManage
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberManage.do")
-	public String selectMberList(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, ModelMap model, HttpServletRequest request) throws Exception {
+	public String selectMberList(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, ModelMap model, HttpServletRequest request) {
 		
 			// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 			request.getSession().setAttribute("menuNo", "6000000");
@@ -114,11 +115,9 @@ public class EgovMberManageController {
 	 * @param mberManageVO 일반회원초기화정보
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovMberInsert
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovMberInsertView.do")
-	public String insertMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("mberManageVO") MberManageVO mberManageVO, Model model)
-			throws Exception {
+	public String insertMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("mberManageVO") MberManageVO mberManageVO, Model model) {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -154,10 +153,9 @@ public class EgovMberManageController {
 	 * @param bindingResult 입력값검증용 bindingResult
 	 * @param model 화면모델
 	 * @return forward:/uss/umt/mber/EgovMberManage.do
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberInsert.do", method = RequestMethod.POST)
-	public String insertMber(@Valid @ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult, Model model) throws Exception {
+	public String insertMber(@Valid @ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult, Model model) {
 		
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -199,10 +197,9 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovMberSelectUpdt
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/mber/EgovMberSelectUpdtView.do")
-	public String updateMberView(@RequestParam("selectedId") String mberId, @ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
+	public String updateMberView(@RequestParam("selectedId") String mberId, @ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, Model model) {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -242,13 +239,12 @@ public class EgovMberManageController {
 	 * @param bindingResult 입력값검증용 bindingResult
 	 * @param model 화면모델
 	 * @return forward:/uss/umt/mber/EgovMberManage.do
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberSelectUpdt.do", method = RequestMethod.POST)
 	// 26.08.20 조치 : 검증 실패 시 상세화면을 다시 그리는데 userSearchVO 가 모델에 없어
 	// JSP의 hidden pageIndex 가 빈 값으로 렌더되고, 목록 버튼이 pageIndex="" 를 보내 400이 발생하는 오류 수정
 	public String updateMber(@Valid @ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult,
-			@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
+			@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, Model model) {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -291,10 +287,9 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건정보
 	 * @param model 화면모델
 	 * @return forward:/uss/umt/mber/EgovMberManage.do
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberDelete.do", method = RequestMethod.POST)
-	public String deleteMber(@RequestParam("checkedIdForDel") String checkedIdForDel, @ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, Model model) throws Exception {
+	public String deleteMber(@RequestParam("checkedIdForDel") String checkedIdForDel, @ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, Model model) {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -316,11 +311,10 @@ public class EgovMberManageController {
 	 * @param commandMap 파라메터전달용 commandMap
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovMberSbscrb
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/cmm/EgovMberSbscrbView.do")
 	public String sbscrbMberView(@ModelAttribute("userSearchVO") UserDefaultVO userSearchVO, @ModelAttribute("mberManageVO") MberManageVO mberManageVO,
-			@RequestParam Map<String, Object> commandMap, Model model) throws Exception {
+			@RequestParam Map<String, Object> commandMap, Model model) {
 
 		// 미인증 사용자에 대한 보안처리
 		/*
@@ -357,10 +351,9 @@ public class EgovMberManageController {
 	 * 일반회원가입신청등록처리후로그인화면으로 이동한다.
 	 * @param mberManageVO 일반회원가입신청정보
 	 * @return forward:/uat/uia/egovLoginUsr.do
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/cmm/EgovMberSbscrb.do", method = RequestMethod.POST)
-	public String sbscrbMber(@Valid @ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult) throws Exception {
+	public String sbscrbMber(@Valid @ModelAttribute("mberManageVO") MberManageVO mberManageVO, BindingResult bindingResult) {
 
 		//가입상태 초기화
 		mberManageVO.setMberSttus("A");
@@ -375,10 +368,9 @@ public class EgovMberManageController {
 	 * 일반회원 약관확인
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovStplatCnfirm
-	 * @throws Exception
 	 */
 	@RequestMapping("/uss/umt/cmm/EgovStplatCnfirmMber.do")
-	public String sbscrbEntrprsMber(Model model) throws Exception {
+	public String sbscrbEntrprsMber(Model model) {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -404,11 +396,10 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건
 	 * @param mberManageVO 일반회원수정정보(비밀번호)
 	 * @return cmm/uss/umt/EgovMberPasswordUpdt
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordUpdt.do", method = RequestMethod.POST)
 	public String updatePassword(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("userSearchVO") UserDefaultVO userSearchVO,
-			@ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+			@ModelAttribute("mberManageVO") MberManageVO mberManageVO) {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -465,11 +456,10 @@ public class EgovMberManageController {
 	 * @param userSearchVO 검색조건
 	 * @param mberManageVO 일반회원수정정보(비밀번호)
 	 * @return cmm/uss/umt/EgovMberPasswordUpdt
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/mber/EgovMberPasswordUpdtView.do")
 	public String updatePasswordView(ModelMap model, @RequestParam Map<String, Object> commandMap, @ModelAttribute("userSearchVO") UserDefaultVO userSearchVO,
-			@ModelAttribute("mberManageVO") MberManageVO mberManageVO) throws Exception {
+			@ModelAttribute("mberManageVO") MberManageVO mberManageVO) {
 
 		// 미인증 사용자에 대한 보안처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
@@ -490,10 +480,9 @@ public class EgovMberManageController {
 	 * 입력한 사용자아이디의 중복확인화면 이동
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovIdDplctCnfirm
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/EgovIdDplctCnfirmView.do")
-	public String checkIdDplct(ModelMap model) throws Exception {
+	public String checkIdDplct(ModelMap model) {
 		/*
 		 * // 미인증 사용자에 대한 보안처리 Boolean isAuthenticated =
 		 * EgovUserDetailsHelper.isAuthenticated(); if(!isAuthenticated) {
@@ -511,10 +500,9 @@ public class EgovMberManageController {
 	 * @param commandMap 파라메터전달용 commandMap
 	 * @param model 화면모델
 	 * @return cmm/uss/umt/EgovIdDplctCnfirm
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/uss/umt/cmm/EgovIdDplctCnfirm.do")
-	public String checkIdDplct(@RequestParam Map<String, Object> commandMap, ModelMap model) throws Exception {
+	public String checkIdDplct(@RequestParam Map<String, Object> commandMap, ModelMap model) {
 		/*
 		 * // 미인증 사용자에 대한 보안처리 Boolean isAuthenticated =
 		 * EgovUserDetailsHelper.isAuthenticated(); if(!isAuthenticated) {
@@ -523,7 +511,11 @@ public class EgovMberManageController {
 		 * "uat/uia/EgovLoginUsr"; }
 		 */
 		String checkId = (String) commandMap.get("checkId");
-		checkId = new String(checkId.getBytes("ISO-8859-1"), "UTF-8");
+		try {
+			checkId = new String(checkId.getBytes("ISO-8859-1"), "UTF-8");
+		} catch (UnsupportedEncodingException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		if (checkId == null || checkId.equals(""))
 			return "forward:/uss/umt/EgovIdDplctCnfirmView.do";

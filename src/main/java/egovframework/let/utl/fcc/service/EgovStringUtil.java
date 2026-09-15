@@ -864,7 +864,6 @@ public class EgovStringUtil {
      *
      * @param srcString
      * @return String
-     * @exception Exception
      * @see
      */
     public static String getHtmlStrCnvr(String srcString) {

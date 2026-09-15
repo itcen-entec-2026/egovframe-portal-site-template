@@ -35,7 +35,6 @@ public class StplatManageDAO extends EgovAbstractMapper {
 	 * 약관정보 글 목록에 대한 상세내용을 조회한다.
 	 * @param vo
 	 * @return 조회한 글
-	 * @exception Exception
 	 */
     public StplatManageVO selectStplatDetail(StplatManageVO vo) {
 
@@ -47,7 +46,6 @@ public class StplatManageDAO extends EgovAbstractMapper {
 	 * 약관정보 글 목록을 조회한다.
 	 * @param searchVO
 	 * @return 글 목록
-	 * @exception Exception
 	 */
     public List<?> selectStplatList(StplatManageDefaultVO searchVO) {
 
@@ -69,7 +67,6 @@ public class StplatManageDAO extends EgovAbstractMapper {
 	/**
 	 * 약관정보 글을 등록한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     public void insertStplatCn(StplatManageVO vo) {
 
@@ -80,7 +77,6 @@ public class StplatManageDAO extends EgovAbstractMapper {
 	/**
 	 * 약관정보 글을 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     public void updateStplatCn(StplatManageVO vo) {
 
@@ -91,7 +87,6 @@ public class StplatManageDAO extends EgovAbstractMapper {
 	/**
 	 * 약관정보 글을 삭제한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     public void deleteStplatCn(StplatManageVO vo) {
 

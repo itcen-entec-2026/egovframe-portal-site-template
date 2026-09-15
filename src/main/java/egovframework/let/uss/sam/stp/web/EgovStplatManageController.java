@@ -57,11 +57,10 @@ public class EgovStplatManageController {
 	 * 
 	 * @param model
 	 * @return "/uss/sam/stp/EgovMain"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/sam/stp/EgovMain.do")
-	public String EgovMain(ModelMap model) throws Exception {
+	public String EgovMain(ModelMap model) {
 		return "/uss/sam/stp/EgovMain";
 	}
 
@@ -70,11 +69,10 @@ public class EgovStplatManageController {
 	 * 
 	 * @param model
 	 * @return "/uss/sam/stp/EgovLeft"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/sam/stp/EgovLeft.do")
-	public String EgovLeft(ModelMap model) throws Exception {
+	public String EgovLeft(ModelMap model) {
 		return "/uss/sam/stp/EgovLeft";
 	}
 
@@ -84,12 +82,10 @@ public class EgovStplatManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return "/uss/sam/stp/EgovStplatListInqire"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/sam/stp/StplatListInqire.do")
-	public String selectStplatList(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model)
-			throws Exception {
+	public String selectStplatList(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model) {
 
 		/** EgovPropertyService.SiteList */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
@@ -121,12 +117,11 @@ public class EgovStplatManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return "/uss/sam/stp/EgovStplatDetailInqire"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/sam/stp/StplatDetailInqire.do")
 	public String selectStplatDetail(StplatManageVO stplatManageVO,
-			@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model) throws Exception {
+			@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model) {
 
 		StplatManageVO vo = stplatManageService.selectStplatDetail(stplatManageVO);
 
@@ -141,12 +136,10 @@ public class EgovStplatManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return "/uss/sam/stp/EgovStplatCnRegist"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/sam/stp/StplatCnRegistView.do")
-	public String insertStplatCnView(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, Model model)
-			throws Exception {
+	public String insertStplatCnView(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, Model model) {
 
 		model.addAttribute("stplatManageVO", new StplatManageVO());
 
@@ -161,13 +154,12 @@ public class EgovStplatManageController {
 	 * @param stplatManageVO
 	 * @param bindingResult
 	 * @return "forward:/uss/sam/stp/StplatListInqire.do"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/sam/stp/StplatCnRegist.do")
 	public String insertStplatCn(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO,
 			@Valid @ModelAttribute("stplatManageVO") StplatManageVO stplatManageVO,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 			
@@ -195,12 +187,11 @@ public class EgovStplatManageController {
 	 * @param searchVO
 	 * @param model
 	 * @return "/uss/sam/stp/EgovStplatCnUpdt"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/sam/stp/StplatCnUpdtView.do")
 	public String updateStplatCnView(@RequestParam("useStplatId") String useStplatId,
-			@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model) throws Exception {
+			@ModelAttribute("searchVO") StplatManageDefaultVO searchVO, ModelMap model) {
 
 		StplatManageVO stplatManageVO = new StplatManageVO();
 
@@ -223,13 +214,12 @@ public class EgovStplatManageController {
 	 * @param stplatManageVO
 	 * @param bindingResult
 	 * @return "forward:/uss/sam/stp/StplatListInqire.do"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/sam/stp/StplatCnUpdt.do")
 	public String updateStplatCn(@ModelAttribute("searchVO") StplatManageDefaultVO searchVO,
 			@Valid @ModelAttribute("stplatManageVO") StplatManageVO stplatManageVO,
-			BindingResult bindingResult) throws Exception {
+			BindingResult bindingResult) {
 
 		if (bindingResult.hasErrors()) {
 
@@ -255,12 +245,11 @@ public class EgovStplatManageController {
 	 * @param stplatManageVO
 	 * @param searchVO
 	 * @return "forward:/uss/sam/stp/StplatListInqire.do"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping("/uss/sam/stp/StplatCnDelete.do")
 	public String deleteStplatCn(StplatManageVO stplatManageVO,
-			@ModelAttribute("searchVO") StplatManageDefaultVO searchVO) throws Exception {
+			@ModelAttribute("searchVO") StplatManageDefaultVO searchVO) {
 
 		stplatManageService.deleteStplatCn(stplatManageVO);
 

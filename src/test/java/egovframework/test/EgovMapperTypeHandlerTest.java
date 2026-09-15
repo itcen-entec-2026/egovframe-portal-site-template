@@ -2,6 +2,7 @@ package egovframework.test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.ParameterizedType;
@@ -28,6 +29,7 @@ import org.apache.ibatis.reflection.ReflectorFactory;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.TypeHandler;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.Resource;
@@ -53,7 +55,7 @@ class EgovMapperTypeHandlerTest {
 
 	@Test
 	@DisplayName("핸들러가 내놓는 타입이 프로퍼티 타입에 담긴다")
-	void resultMappingTypeHandlersFitTheirProperties() throws Exception {
+	void resultMappingTypeHandlersFitTheirProperties() {
 		List<String> mismatches = new ArrayList<>();
 
 		for (String dbType : dbTypes()) {
@@ -110,24 +112,30 @@ class EgovMapperTypeHandlerTest {
 		return null;
 	}
 
-	private Configuration configurationFor(String dbType) throws Exception {
+	private Configuration configurationFor(String dbType) {
 		Configuration configuration;
 		try (InputStream config = getClass()
 				.getResourceAsStream("/egovframework/mapper/config/mapper-config.xml")) {
 			configuration = new XMLConfigBuilder(config).parse();
+		} catch (IOException e) {
+			throw new BaseRuntimeException(e);
 		}
 		PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-		for (Resource mapper : resolver
-				.getResources("classpath*:/egovframework/mapper/let/**/*_" + dbType + ".xml")) {
-			try (InputStream in = mapper.getInputStream()) {
-				new XMLMapperBuilder(in, configuration, mapper.getURI().toString(),
-					configuration.getSqlFragments()).parse();
+		try {
+			for (Resource mapper : resolver
+					.getResources("classpath*:/egovframework/mapper/let/**/*_" + dbType + ".xml")) {
+				try (InputStream in = mapper.getInputStream()) {
+					new XMLMapperBuilder(in, configuration, mapper.getURI().toString(),
+						configuration.getSqlFragments()).parse();
+				}
 			}
+		} catch (IOException e) {
+			throw new BaseRuntimeException(e);
 		}
 		return configuration;
 	}
 
-	private Set<String> dbTypes() throws Exception {
+	private Set<String> dbTypes() {
 		Set<String> dbTypes = new TreeSet<>();
 		try (Stream<Path> paths = Files.walk(MAPPER_DIR)) {
 			for (Path path : paths.filter(Files::isRegularFile).toList()) {
@@ -136,6 +144,8 @@ class EgovMapperTypeHandlerTest {
 					dbTypes.add(matcher.group(1));
 				}
 			}
+		} catch (IOException e) {
+			throw new BaseRuntimeException(e);
 		}
 		return dbTypes;
 	}

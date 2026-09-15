@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.springframework.stereotype.Service;
 
@@ -42,10 +44,9 @@ public class EgovQustnrTmplatManageServiceImpl extends EgovAbstractServiceImpl i
 	 * 템플릿파일명을 조회한다.
 	 * @param qustnrTmplatManageVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public Map<?, ?> selectQustnrTmplatManageTmplatImagepathnm(QustnrTmplatManageVO qustnrTmplatManageVO) throws Exception{
+	public Map<?, ?> selectQustnrTmplatManageTmplatImagepathnm(QustnrTmplatManageVO qustnrTmplatManageVO) {
 		return dao.selectQustnrTmplatManageTmplatImagepathnm(qustnrTmplatManageVO);
 	}
 
@@ -53,10 +54,9 @@ public class EgovQustnrTmplatManageServiceImpl extends EgovAbstractServiceImpl i
 	 * 설문템플릿 목록을 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrTmplatManageList(ComDefaultVO searchVO) throws Exception{
+	public List<?> selectQustnrTmplatManageList(ComDefaultVO searchVO) {
 		return dao.selectQustnrTmplatManageList(searchVO);
 	}
 
@@ -64,10 +64,9 @@ public class EgovQustnrTmplatManageServiceImpl extends EgovAbstractServiceImpl i
 	 * 설문템플릿를(을) 상세조회 한다.
 	 * @param QustnrTmplatManage - 회정정보가 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
 	@Override
-	public List<?> selectQustnrTmplatManageDetail(QustnrTmplatManageVO qustnrTmplatManageVO) throws Exception{
+	public List<?> selectQustnrTmplatManageDetail(QustnrTmplatManageVO qustnrTmplatManageVO) {
 		return dao.selectQustnrTmplatManageDetail(qustnrTmplatManageVO);
 	}
 
@@ -75,21 +74,24 @@ public class EgovQustnrTmplatManageServiceImpl extends EgovAbstractServiceImpl i
 	 * 설문템플릿를(을) 목록 전체 건수를(을) 조회한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
 	 * @return int
-	 * @throws Exception
 	 */
 	@Override
-	public int selectQustnrTmplatManageListCnt(ComDefaultVO searchVO) throws Exception{
+	public int selectQustnrTmplatManageListCnt(ComDefaultVO searchVO) {
 		return dao.selectQustnrTmplatManageListCnt(searchVO);
 	}
 
     /**
 	 * 설문템플릿를(을) 등록한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
-	public void insertQustnrTmplatManage(QustnrTmplatManageVO qustnrTmplatManageVO) throws Exception {
-		String sMakeId = idgenService.getNextStringId();
+	public void insertQustnrTmplatManage(QustnrTmplatManageVO qustnrTmplatManageVO) {
+		String sMakeId;
+		try {
+			sMakeId = idgenService.getNextStringId();
+		} catch (FdlException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		qustnrTmplatManageVO.setQestnrTmplatId(sMakeId);
 
@@ -99,7 +101,6 @@ public class EgovQustnrTmplatManageServiceImpl extends EgovAbstractServiceImpl i
     /**
 	 * 설문템플릿를(을) 수정한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
 	public void updateQustnrTmplatManage(QustnrTmplatManageVO qustnrTmplatManageVO){
@@ -109,7 +110,6 @@ public class EgovQustnrTmplatManageServiceImpl extends EgovAbstractServiceImpl i
     /**
 	 * 설문템플릿를(을) 삭제한다.
 	 * @param searchVO - 조회할 정보가 담긴 VO
-	 * @throws Exception
 	 */
 	@Override
 	public void deleteQustnrTmplatManage(QustnrTmplatManageVO qustnrTmplatManageVO){

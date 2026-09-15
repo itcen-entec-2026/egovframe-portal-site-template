@@ -3,6 +3,8 @@ package egovframework.let.uss.olh.qna.service.impl;
 import java.util.List;
 
 import org.egovframe.rte.fdl.cmmn.EgovAbstractServiceImpl;
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.springframework.stereotype.Service;
 
@@ -47,23 +49,22 @@ public class EgovQnaManageServiceImpl extends EgovAbstractServiceImpl implements
 	 * Q&A 글을 조회한다.
 	 * @param vo
 	 * @return 조회한 글
-	 * @exception Exception
 	 */
     @Override
-	public QnaManageVO selectQnaListDetail(QnaManageVO vo) throws Exception {
+	public QnaManageVO selectQnaListDetail(QnaManageVO vo) {
         QnaManageVO resultVO = qnaManageDAO.selectQnaListDetail(vo);
-        if (resultVO == null)
-            throw processException("info.nodata.msg");
+        if (resultVO == null) {
+            throw new BaseRuntimeException(processException("info.nodata.msg"));
+        }
         return resultVO;
     }
 
 	/**
 	 * Q&A 글을 수정한다.(조회수를 수정)
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void updateQnaInqireCo(QnaManageVO vo) throws Exception {
+	public void updateQnaInqireCo(QnaManageVO vo) {
 
     	qnaManageDAO.updateQnaInqireCo(vo);
     }
@@ -72,10 +73,9 @@ public class EgovQnaManageServiceImpl extends EgovAbstractServiceImpl implements
 	 * Q&A 글 목록을 조회한다.
 	 * @param searchVO
 	 * @return 글 목록
-	 * @exception Exception
 	 */
 	@Override
-	public List<?> selectQnaList(QnaManageDefaultVO searchVO) throws Exception {
+	public List<?> selectQnaList(QnaManageDefaultVO searchVO) {
         return qnaManageDAO.selectQnaList(searchVO);
     }
 
@@ -92,12 +92,16 @@ public class EgovQnaManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * Q&A 글을 등록한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void insertQnaCn(QnaManageVO vo) throws Exception {
+	public void insertQnaCn(QnaManageVO vo) {
 
-		String	qaId = idgenService.getNextStringId();
+		String qaId;
+		try {
+			qaId = idgenService.getNextStringId();
+		} catch (FdlException e) {
+			throw new BaseRuntimeException(e);
+		}
 
 		vo.setQaId(qaId);
 
@@ -124,10 +128,9 @@ public class EgovQnaManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * Q&A 글을 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void updateQnaCn(QnaManageVO vo) throws Exception {
+	public void updateQnaCn(QnaManageVO vo) {
 
 		prepareMngrAt(vo);
     	qnaManageDAO.updateQnaCn(vo);
@@ -136,10 +139,9 @@ public class EgovQnaManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * Q&A 글을 삭제한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void deleteQnaCn(QnaManageVO vo) throws Exception {
+	public void deleteQnaCn(QnaManageVO vo) {
 
 		prepareMngrAt(vo);
     	qnaManageDAO.deleteQnaCn(vo);
@@ -161,13 +163,13 @@ public class EgovQnaManageServiceImpl extends EgovAbstractServiceImpl implements
 	 * Q&A 답변 글을 조회한다.
 	 * @param vo
 	 * @return 조회한 글
-	 * @exception Exception
 	 */
     @Override
-	public QnaManageVO selectQnaAnswerListDetail(QnaManageVO vo) throws Exception {
+	public QnaManageVO selectQnaAnswerListDetail(QnaManageVO vo) {
         QnaManageVO resultVO = qnaManageDAO.selectQnaAnswerListDetail(vo);
-        if (resultVO == null)
-            throw processException("info.nodata.msg");
+        if (resultVO == null) {
+            throw new BaseRuntimeException(processException("info.nodata.msg"));
+        }
         return resultVO;
     }
 
@@ -175,10 +177,9 @@ public class EgovQnaManageServiceImpl extends EgovAbstractServiceImpl implements
 	 * Q&A 답변 글 목록을 조회한다.
 	 * @param searchVO
 	 * @return 글 목록
-	 * @exception Exception
 	 */
 	@Override
-	public List<?> selectQnaAnswerList(QnaManageDefaultVO searchVO) throws Exception {
+	public List<?> selectQnaAnswerList(QnaManageDefaultVO searchVO) {
         return qnaManageDAO.selectQnaAnswerList(searchVO);
     }
 
@@ -195,10 +196,9 @@ public class EgovQnaManageServiceImpl extends EgovAbstractServiceImpl implements
 	/**
 	 * Q&A 답변 글을 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     @Override
-	public void updateQnaCnAnswer(QnaManageVO vo) throws Exception {
+	public void updateQnaCnAnswer(QnaManageVO vo) {
 
     	qnaManageDAO.updateQnaCnAnswer(vo);
     }

@@ -42,7 +42,7 @@ public class EgovLoginController {
 	 */
 	@RequestMapping(value = "/uat/uia/egovLoginUsr.do")
 	public String loginUsrView(@ModelAttribute("loginVO") LoginVO loginVO, HttpServletRequest request,
-			HttpServletResponse response, ModelMap model) throws Exception {
+			HttpServletResponse response, ModelMap model) {
 		String message = request.getParameter("loginMessage");
 		if (message != null) {
 			if ("expired".equals(message)) {
@@ -67,7 +67,7 @@ public class EgovLoginController {
 	 * 로그인 후 메인화면으로 들어간다
 	 */
 	@RequestMapping(value = "/uat/uia/actionMain.do")
-	public String actionMain(ModelMap model) throws Exception {
+	public String actionMain(ModelMap model) {
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
 			model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));

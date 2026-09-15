@@ -33,7 +33,6 @@ public class RoleManageDAO extends EgovAbstractMapper {
 	 * 등록된 롤 정보 조회
 	 * @param roleManageVO RoleManageVO
 	 * @return RoleManageVO
-	 * @exception Exception
 	 */
 	public RoleManageVO selectRole(RoleManageVO roleManageVO) {
 		return (RoleManageVO) selectOne("roleManageDAO.selectRole", roleManageVO);
@@ -43,7 +42,6 @@ public class RoleManageDAO extends EgovAbstractMapper {
 	 * 등록된 롤 정보 목록 조회
 	 * @param roleManageVO RoleManageVO
 	 * @return List<RoleManageVO>
-	 * @exception Exception
 	 */
 	public List<RoleManageVO> selectRoleList(RoleManageVO roleManageVO) {
 		return selectList("roleManageDAO.selectRoleList", roleManageVO);
@@ -52,7 +50,6 @@ public class RoleManageDAO extends EgovAbstractMapper {
 	/**
 	 * 시스템 메뉴에 따른 접근권한, 데이터 입력, 수정, 삭제의 권한 롤을 등록
 	 * @param roleManage RoleManage
-	 * @exception Exception
 	 */
 	public void insertRole(RoleManage roleManage) {
 		insert("roleManageDAO.insertRole", roleManage);
@@ -60,7 +57,6 @@ public class RoleManageDAO extends EgovAbstractMapper {
 	/**
 	 * 시스템 메뉴에 따른 접근권한, 데이터 입력, 수정, 삭제의 권한 롤을 수정
 	 * @param roleManage RoleManage
-	 * @exception Exception
 	 */
 	public void updateRole(RoleManage roleManage) {
 		update("roleManageDAO.updateRole", roleManage);
@@ -68,7 +64,6 @@ public class RoleManageDAO extends EgovAbstractMapper {
 	/**
 	 * 불필요한 롤정보를 화면에 조회하여 데이터베이스에서 삭제
 	 * @param roleManage RoleManage
-	 * @exception Exception
 	 */
 	public void deleteRole(RoleManage roleManage) {
 		delete("roleManageDAO.deleteRole", roleManage);
@@ -78,7 +73,6 @@ public class RoleManageDAO extends EgovAbstractMapper {
 	 * 롤목록 총 갯수를 조회한다.
 	 * @param roleManageVO RoleManageVO
 	 * @return int
-	 * @exception Exception
 	 */
     public int selectRoleListTotCnt(RoleManageVO roleManageVO) {
         return (Integer)selectOne("roleManageDAO.selectAuthorListTotCnt", roleManageVO);
@@ -88,7 +82,6 @@ public class RoleManageDAO extends EgovAbstractMapper {
 	 * 등록된 모든 롤 정보 목록 조회
 	 * @param roleManageVO RoleManageVO
 	 * @return List<RoleManageVO>
-	 * @exception Exception
 	 */
 	public List<RoleManageVO> selectRoleAllList(RoleManageVO roleManageVO) {
 		return selectList("roleManageDAO.selectRoleAllList", roleManageVO);

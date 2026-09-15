@@ -2,6 +2,8 @@ package egovframework.let.sec.rmt.web;
 
 import java.util.List;
 
+import org.egovframe.rte.fdl.cmmn.exception.BaseRuntimeException;
+import org.egovframe.rte.fdl.cmmn.exception.FdlException;
 import org.egovframe.rte.fdl.idgnr.EgovIdGnrService;
 import org.egovframe.rte.fdl.property.EgovPropertyService;
 import org.egovframe.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -70,11 +72,9 @@ public class EgovRoleManageController {
     /**
 	 * 롤 목록화면 이동
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping("/sec/rmt/EgovRoleListView.do")
-    public String selectRoleListView()
-            throws Exception {
+    public String selectRoleListView() {
         return "/sec/rmt/EgovRoleManage";
     }
 
@@ -82,10 +82,9 @@ public class EgovRoleManageController {
 	 * 등록된 롤 정보 목록 조회
 	 * @param roleManageVO RoleManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRoleList.do")
-	public String selectRoleList(@ModelAttribute("roleManageVO") RoleManageVO roleManageVO, ModelMap model) throws Exception {
+	public String selectRoleList(@ModelAttribute("roleManageVO") RoleManageVO roleManageVO, ModelMap model) {
     	/** paging */
     	PaginationInfo paginationInfo = new PaginationInfo();
 		paginationInfo.setCurrentPageNo(roleManageVO.getPageIndex());
@@ -113,13 +112,12 @@ public class EgovRoleManageController {
 	 * @param roleManageVO RoleManageVO
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRole.do")
 	public String selectRole(@RequestParam("roleCode") String roleCode,
 	                         @ModelAttribute("roleManageVO") RoleManageVO roleManageVO,
 	                         @ModelAttribute("authorManageVO") AuthorManageVO authorManageVO,
-		                      ModelMap model) throws Exception {
+		                      ModelMap model) {
 
     	roleManageVO.setRoleCode(roleCode);
 
@@ -136,11 +134,10 @@ public class EgovRoleManageController {
 	 * 롤 등록화면 이동
 	 * @param authorManageVO AuthorManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping("/sec/rmt/EgovRoleInsertView.do")
     public String insertRoleView(@ModelAttribute("authorManageVO") AuthorManageVO authorManageVO,
-    		                      ModelMap model) throws Exception {
+    		                      ModelMap model) {
 
     	authorManageVO.setAuthorManageList(egovAuthorManageService.selectAuthorAllList(authorManageVO));
         model.addAttribute("authorManageList", authorManageVO.getAuthorManageList());
@@ -154,9 +151,8 @@ public class EgovRoleManageController {
 	 * @param comDefaultCodeVO ComDefaultCodeVO
 	 * @param codeId String
 	 * @return List
-	 * @exception Exception
 	 */
-	public List<?> getCmmCodeDetailList(ComDefaultCodeVO comDefaultCodeVO, String codeId)  throws Exception {
+	public List<?> getCmmCodeDetailList(ComDefaultCodeVO comDefaultCodeVO, String codeId) {
     	comDefaultCodeVO.setCodeId(codeId);
     	return egovCmmUseService.selectCmmCodeDetail(comDefaultCodeVO);
     }
@@ -166,14 +162,13 @@ public class EgovRoleManageController {
 	 * @param roleManage RoleManage
 	 * @param roleManageVO RoleManageVO
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRoleInsert.do", method = RequestMethod.POST)
 	public String insertRole(@Valid @ModelAttribute("roleManage") RoleManage roleManage,
 						     BindingResult bindingResult,
 			                 @ModelAttribute("roleManageVO") RoleManageVO roleManageVO,
 			                  SessionStatus status,
-                              ModelMap model) throws Exception {
+                              ModelMap model) {
 
     	if (bindingResult.hasErrors()) {
 			return "/sec/rmt/EgovRoleInsert";
@@ -185,7 +180,11 @@ public class EgovRoleManageController {
 	    		roleTyp = "pct";
 	    	else roleTyp = "web";
 
-	    	roleManage.setRoleCode(roleTyp.concat("-").concat(egovRoleIdGnrService.getNextStringId()));
+	    	try {
+				roleManage.setRoleCode(roleTyp.concat("-").concat(egovRoleIdGnrService.getNextStringId()));
+			} catch (FdlException e) {
+				throw new BaseRuntimeException(e);
+			}
 	    	roleManageVO.setRoleCode(roleManage.getRoleCode());
 
 	    	status.setComplete();
@@ -202,13 +201,12 @@ public class EgovRoleManageController {
 	 * @param roleManage RoleManage
 	 * @param bindingResult BindingResult
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRoleUpdate.do", method = RequestMethod.POST)
 	public String updateRole(@Valid @ModelAttribute("roleManage") RoleManage roleManage,
 			BindingResult bindingResult,
 			SessionStatus status,
-            ModelMap model) throws Exception {
+            ModelMap model) {
 
     	if (bindingResult.hasErrors()) {
 			return "/sec/rmt/EgovRoleUpdate";
@@ -224,12 +222,11 @@ public class EgovRoleManageController {
 	 * 불필요한 롤정보를 화면에 조회하여 데이터베이스에서 삭제
 	 * @param roleManage RoleManage
 	 * @return String
-	 * @exception Exception
 	 */
     @RequestMapping(value="/sec/rmt/EgovRoleDelete.do", method = RequestMethod.POST)
 	public String deleteRole(@ModelAttribute("roleManage") RoleManage roleManage,
             SessionStatus status,
-            ModelMap model) throws Exception {
+            ModelMap model) {
 
     	egovRoleManageService.deleteRole(roleManage);
     	status.setComplete();
@@ -243,13 +240,12 @@ public class EgovRoleManageController {
 	 * @param roleCodes String
 	 * @param roleManage RoleManage
 	 * @return String
-	 * @exception Exception
 	 */
 	@RequestMapping(value="/sec/rmt/EgovRoleListDelete.do", method = RequestMethod.POST)
 	public String deleteRoleList(@RequestParam("roleCodes") String roleCodes,
 			                     @ModelAttribute("roleManage") RoleManage roleManage,
 	                              SessionStatus status,
-	                              Model model) throws Exception {
+	                              Model model) {
     	String [] strRoleCodes = roleCodes.split(";");
     	for(int i=0; i<strRoleCodes.length;i++) {
     		roleManage.setRoleCode(strRoleCodes[i]);

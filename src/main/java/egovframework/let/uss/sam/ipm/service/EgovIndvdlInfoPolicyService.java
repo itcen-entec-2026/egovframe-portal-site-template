@@ -27,45 +27,39 @@ public interface EgovIndvdlInfoPolicyService {
 	 * 개인정보보호정책 목록을 조회한다.
 	 * @param searchVO  조회할 정보가 담긴 VO
 	 * @return List
-	 * @throws Exception
 	 */
-	public List<?> selectIndvdlInfoPolicyList(ComDefaultVO searchVO) throws Exception;
+	public List<?> selectIndvdlInfoPolicyList(ComDefaultVO searchVO);
 
     /**
      * 개인정보보호정책를(을) 목록 전체 건수를(을) 조회한다.
      * @param searchVO  조회할 정보가 담긴 VO
      * @return int
-     * @throws Exception
      */
-    public int selectIndvdlInfoPolicyListCnt(ComDefaultVO searchVO) throws Exception;
+    public int selectIndvdlInfoPolicyListCnt(ComDefaultVO searchVO);
 
     /**
 	 * 개인정보보호정책를(을) 상세조회 한다.
 	 * @param indvdlInfoPolicy  개인정보보호정책 정보 담김 VO
 	 * @return List
-	 * @throws Exception
 	 */
-	public IndvdlInfoPolicy selectIndvdlInfoPolicyDetail(IndvdlInfoPolicy indvdlInfoPolicy) throws Exception;
+	public IndvdlInfoPolicy selectIndvdlInfoPolicyDetail(IndvdlInfoPolicy indvdlInfoPolicy);
 
         /**
 	 * 개인정보보호정책를(을) 등록한다.
 	 * @param indvdlInfoPolicy  개인정보보호정책 정보 담김 VO
-	 * @throws Exception
 	 */
-	void  insertIndvdlInfoPolicy(IndvdlInfoPolicy indvdlInfoPolicy) throws Exception;
+	void  insertIndvdlInfoPolicy(IndvdlInfoPolicy indvdlInfoPolicy);
 
         /**
 	 * 개인정보보호정책를(을) 수정한다.
 	 * @param indvdlInfoPolicy  개인정보보호정책 정보 담김 VO
-	 * @throws Exception
 	 */
-	void  updateIndvdlInfoPolicy(IndvdlInfoPolicy indvdlInfoPolicy) throws Exception;
+	void  updateIndvdlInfoPolicy(IndvdlInfoPolicy indvdlInfoPolicy);
 
 	/**
 	 * 개인정보보호정책를(을) 삭제한다.
 	 * @param indvdlInfoPolicy  개인정보보호정책 정보 담김 VO
-	 * @throws Exception
 	 */
-	void  deleteIndvdlInfoPolicy(IndvdlInfoPolicy indvdlInfoPolicy) throws Exception;
+	void  deleteIndvdlInfoPolicy(IndvdlInfoPolicy indvdlInfoPolicy);
 
 }

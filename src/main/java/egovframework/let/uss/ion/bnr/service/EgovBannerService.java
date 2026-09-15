@@ -29,7 +29,7 @@ public interface EgovBannerService {
 	 * 
 	 * @param bannerVO
 	 */
-	public List<BannerVO> selectBannerList(BannerVO bannerVO) throws Exception;
+	public List<BannerVO> selectBannerList(BannerVO bannerVO);
 
 	/**
 	 * 배너목록 총 갯수를 조회한다.
@@ -38,7 +38,7 @@ public interface EgovBannerService {
 	 * 
 	 * @param bannerVO
 	 */
-	public int selectBannerListTotCnt(BannerVO bannerVO) throws Exception;
+	public int selectBannerListTotCnt(BannerVO bannerVO);
 	
 	/**
 	 * 등록된 배너의 상세정보를 조회한다.
@@ -47,7 +47,7 @@ public interface EgovBannerService {
 	 * 
 	 * @param bannerVO
 	 */
-	public BannerVO selectBanner(BannerVO bannerVO) throws Exception;
+	public BannerVO selectBanner(BannerVO bannerVO);
 
 	/**
 	 * 배너정보를 신규로 등록한다.
@@ -55,7 +55,7 @@ public interface EgovBannerService {
 	 * 
 	 * @param banner
 	 */
-	public BannerVO insertBanner(Banner banner, BannerVO bannerVO) throws Exception;
+	public BannerVO insertBanner(Banner banner, BannerVO bannerVO);
 
 	/**
 	 * 기 등록된 배너정보를 수정한다.
@@ -63,7 +63,7 @@ public interface EgovBannerService {
 	 * 
 	 * @param banner
 	 */
-	public void updateBanner(Banner banner) throws Exception;
+	public void updateBanner(Banner banner);
 
 	/**
 	 * 기 등록된 배너정보를 삭제한다.
@@ -71,7 +71,7 @@ public interface EgovBannerService {
 	 * 
 	 * @param banner
 	 */
-	public void deleteBanner(Banner banner) throws Exception;
+	public void deleteBanner(Banner banner);
 
 	/**
 	 * 기 등록된 배너정보의 이미지파일을 삭제한다.
@@ -79,7 +79,7 @@ public interface EgovBannerService {
 	 * 
 	 * @param banner
 	 */
-	public void deleteBannerFile(Banner banner) throws Exception;
+	public void deleteBannerFile(Banner banner);
 
 	/**
 	 * 배너가 특정화면에 반영된 결과를 조회한다.
@@ -88,5 +88,5 @@ public interface EgovBannerService {
 	 * 
 	 * @param bannerVO
 	 */
-	public List<BannerVO> selectBannerResult(BannerVO bannerVO) throws Exception;
+	public List<BannerVO> selectBannerResult(BannerVO bannerVO);
 }

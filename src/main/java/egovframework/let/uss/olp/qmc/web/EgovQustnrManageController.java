@@ -70,12 +70,11 @@ public class EgovQustnrManageController {
 	 * @param qustnrManageVO
 	 * @param model
 	 * @return "/uss/olp/qmc/EgovQustnrManageListPopup"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qmc/EgovQustnrManageListPopup.do")
 	public String EgovQustnrManageListPopup(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap, QustnrManageVO qustnrManageVO,
-			ModelMap model) throws Exception {
+			ModelMap model) {
 
 		String sCmd = commandMap.get("cmd") == null ? "" : (String) commandMap.get("cmd");
 		if (sCmd.equals("del")) {
@@ -115,12 +114,11 @@ public class EgovQustnrManageController {
 	 * @param qustnrManageVO
 	 * @param model
 	 * @return  "/uss/olp/qmc/EgovQustnrManageList"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qmc/EgovQustnrManageList.do")
 	public String EgovQustnrManageList(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap, QustnrManageVO qustnrManageVO,
-			ModelMap model, HttpServletRequest request) throws Exception {
+			ModelMap model, HttpServletRequest request) {
 
 		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
 		request.getSession().setAttribute("menuNo", "5000000");
@@ -163,12 +161,11 @@ public class EgovQustnrManageController {
 	 * @param commandMap
 	 * @param model
 	 * @return "/uss/olp/qmc/EgovQustnrManageDetail";
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qmc/EgovQustnrManageDetail.do")
 	public String EgovQustnrManageDetail(@ModelAttribute("searchVO") ComDefaultVO searchVO, QustnrManageVO qustnrManageVO, @RequestParam Map<String, Object> commandMap,
-			ModelMap model) throws Exception {
+			ModelMap model) {
 
 		String sLocationUrl = "/uss/olp/qmc/EgovQustnrManageDetail";
 
@@ -198,13 +195,12 @@ public class EgovQustnrManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qmc/EgovQustnrManageModify"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qmc/EgovQustnrManageModify.do")
 	public String QustnrManageModify(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap,
 			@Valid @ModelAttribute("qustnrManageVO") QustnrManageVO qustnrManageVO,
-			BindingResult bindingResult, ModelMap model) throws Exception {
+			BindingResult bindingResult, ModelMap model) {
 		// 0. Spring Security 사용자권한 처리
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
@@ -269,12 +265,11 @@ public class EgovQustnrManageController {
 	 * @param bindingResult
 	 * @param model
 	 * @return "/uss/olp/qmc/EgovQustnrManageRegist"
-	 * @throws Exception
 	 */
 	@RequireAdmin
 	@RequestMapping(value = "/uss/olp/qmc/EgovQustnrManageRegist.do")
 	public String QustnrManageRegist(@ModelAttribute("searchVO") ComDefaultVO searchVO, @RequestParam Map<String, Object> commandMap,
-			@Valid @ModelAttribute("qustnrManageVO") QustnrManageVO qustnrManageVO, BindingResult bindingResult, ModelMap model) throws Exception {
+			@Valid @ModelAttribute("qustnrManageVO") QustnrManageVO qustnrManageVO, BindingResult bindingResult, ModelMap model) {
 		// 0. Spring Security 사용자권한 처리
 		
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();

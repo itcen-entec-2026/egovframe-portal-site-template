@@ -41,7 +41,7 @@ public class EgovBannerServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * @param bannerVO - 배너 VO
 	 * @return List - 배너 목록
 	 */
-	public List<BannerVO> selectBannerList(BannerVO bannerVO) throws Exception{
+	public List<BannerVO> selectBannerList(BannerVO bannerVO) {
 		return bannerDAO.selectBannerList(bannerVO);
 	}
 
@@ -50,7 +50,7 @@ public class EgovBannerServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * @param bannerVO - 배너 VO
 	 * @return int - 배너 카운트 수
 	 */
-	public int selectBannerListTotCnt(BannerVO bannerVO) throws Exception {
+	public int selectBannerListTotCnt(BannerVO bannerVO) {
 		return bannerDAO.selectBannerListTotCnt(bannerVO);
 	}
 	
@@ -59,7 +59,7 @@ public class EgovBannerServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * @param bannerVO - 배너 VO
 	 * @return BannerVO - 배너 VO
 	 */
-	public BannerVO selectBanner(BannerVO bannerVO) throws Exception{
+	public BannerVO selectBanner(BannerVO bannerVO) {
 		return bannerDAO.selectBanner(bannerVO);
 	}
 
@@ -67,7 +67,7 @@ public class EgovBannerServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * 배너정보를 신규로 등록한다.
 	 * @param banner - 배너 model
 	 */
-	public BannerVO insertBanner(Banner banner, BannerVO bannerVO) throws Exception{
+	public BannerVO insertBanner(Banner banner, BannerVO bannerVO) {
         bannerDAO.insertBanner(banner);
         bannerVO.setBannerId(banner.getBannerId());
         return selectBanner(bannerVO);
@@ -77,7 +77,7 @@ public class EgovBannerServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * 기 등록된 배너정보를 수정한다.
 	 * @param banner - 배너 model
 	 */
-	public void updateBanner(Banner banner) throws Exception{
+	public void updateBanner(Banner banner) {
         bannerDAO.updateBanner(banner);
 	}
 
@@ -85,7 +85,7 @@ public class EgovBannerServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * 기 등록된 배너정보를 삭제한다.
 	 * @param banner - 배너 model
 	 */
-	public void deleteBanner(Banner banner) throws Exception {
+	public void deleteBanner(Banner banner) {
 		deleteBannerFile(banner);
         bannerDAO.deleteBanner(banner);
 	}
@@ -94,7 +94,7 @@ public class EgovBannerServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * 기 등록된 배너정보의 이미지파일을 삭제한다.
 	 * @param banner - 배너 model
 	 */
-	public void deleteBannerFile(Banner banner) throws Exception{
+	public void deleteBannerFile(Banner banner) {
 		FileVO fileVO = (FileVO)bannerDAO.selectBannerFile(banner);
 		File file = new File(fileVO.getFileStreCours()+fileVO.getStreFileNm());
 		file.delete();
@@ -105,7 +105,7 @@ public class EgovBannerServiceImpl extends EgovAbstractServiceImpl implements Eg
 	 * @param bannerVO - 배너 VO
 	 * @return BannerVO - 배너 VO
 	 */
-	public List<BannerVO> selectBannerResult(BannerVO bannerVO) throws Exception{
+	public List<BannerVO> selectBannerResult(BannerVO bannerVO) {
 		return bannerDAO.selectBannerResult(bannerVO);
 	}
 

@@ -72,11 +72,10 @@ public class EgovFaqAdminManageController {
      * @param searchVO
      * @param model
      * @return	"/uss/olh/faq/admin/EgovFaqListInqireAdmin"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping(value="/uss/olh/faq/admin/FaqListInqire.do")
-    public String selectFaqList(@ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) throws Exception {
+    public String selectFaqList(@ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) {
     		// 메인화면에서 넘어온 경우 메뉴 갱신을 위해 추가
     		request.getSession().setAttribute("menuNo", "5000000");
     	
@@ -109,13 +108,12 @@ public class EgovFaqAdminManageController {
      * @param searchVO
      * @param model
      * @return	"/uss/olh/faq/admin/EgovFaqDetailInqire"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/admin/FaqListDetailInqire.do")
     public String	selectFaqListDetail(FaqManageVO faqManageVO,
             @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
-            ModelMap model, HttpServletRequest request) throws Exception {
+            ModelMap model, HttpServletRequest request) {
 
 		FaqManageVO vo = faqManageService.selectFaqListDetail(faqManageVO);
 
@@ -151,14 +149,12 @@ public class EgovFaqAdminManageController {
      * @param faqManageVO
      * @param searchVO
      * @return	"forward:/uss/olh/faq/admin/FaqListDetailInqire.do"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/admin/FaqInqireCoUpdt.do")
     public String updateFaqInqireCo(
             FaqManageVO faqManageVO,
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO)
-            throws Exception {
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO) {
     	LoginVO	loginVO;
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
@@ -185,13 +181,11 @@ public class EgovFaqAdminManageController {
      * @param searchVO
      * @param model
      * @return	"/uss/olh/faq/admin/EgovFaqCnRegist"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/admin/FaqCnRegistView.do")
     public String insertFaqCnView(
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO, Model model)
-            throws Exception {
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO, Model model) {
     	Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
     	if(!isAuthenticated) {
     		model.addAttribute("message", egovMessageSource.getMessage("fail.common.login"));
@@ -210,7 +204,6 @@ public class EgovFaqAdminManageController {
      * @param faqManageVO
      * @param bindingResult
      * @return	"forward:/uss/olh/faq/admin/FaqListInqire.do"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/admin/FaqCnRegist.do")
@@ -218,8 +211,7 @@ public class EgovFaqAdminManageController {
     		final MultipartHttpServletRequest multiRequest,		// 첨부파일을 위한...
             @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
             @Valid @ModelAttribute("faqManageVO") FaqManageVO faqManageVO,
-            BindingResult bindingResult)
-            throws Exception {
+            BindingResult bindingResult) {
 
 		if(bindingResult.hasErrors()){
 			return "/uss/olh/faq/admin/EgovFaqCnRegist";
@@ -274,13 +266,11 @@ public class EgovFaqAdminManageController {
      * @param searchVO
      * @param model
      * @return	"/uss/olh/faq/admin/EgovFaqCnUpdt"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/admin/FaqCnUpdtView.do")
     public String updateFaqCnView(@RequestParam("faqId") String faqId ,
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request)
-            throws Exception {
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO, ModelMap model, HttpServletRequest request) {
     	
 		Boolean isAuthenticated = EgovUserDetailsHelper.isAuthenticated();
 		if (!isAuthenticated) {
@@ -311,7 +301,6 @@ public class EgovFaqAdminManageController {
      * @param bindingResult
      * @param model
      * @return	"forward:/uss/olh/faq/admin/FaqListInqire.do"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/admin/FaqCnUpdt.do")
@@ -320,8 +309,7 @@ public class EgovFaqAdminManageController {
             @ModelAttribute("searchVO") FaqManageDefaultVO searchVO,
             @Valid @ModelAttribute("faqManageVO") FaqManageVO faqManageVO,
             BindingResult bindingResult,
-            ModelMap model)
-            throws Exception {
+            ModelMap model) {
 
 		if(bindingResult.hasErrors()){
 			return "/uss/olh/faq/admin/EgovFaqCnUpdt";
@@ -382,14 +370,12 @@ public class EgovFaqAdminManageController {
      * @param faqManageVO
      * @param searchVO
      * @return	"forward:/uss/olh/faq/admin/FaqListInqire.do"
-     * @throws Exception
      */
     @RequireAdmin
     @RequestMapping("/uss/olh/faq/admin/FaqCnDelete.do")
     public String deleteFaqCn(
             FaqManageVO faqManageVO,
-            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO)
-            throws Exception {
+            @ModelAttribute("searchVO") FaqManageDefaultVO searchVO) {
 
 
     	// 첨부파일 삭제를 위한 ID 생성 start....

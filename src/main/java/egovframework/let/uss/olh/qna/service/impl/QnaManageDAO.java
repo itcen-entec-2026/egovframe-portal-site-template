@@ -33,7 +33,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	 * Q&A 글 목록에 대한 상세내용을 조회한다.
 	 * @param vo
 	 * @return 조회한 글
-	 * @exception Exception
 	 */
     public QnaManageVO selectQnaListDetail(QnaManageVO vo) {
 
@@ -44,7 +43,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	/**
 	 * Q&A 글을 수정한다.(조회수를 수정)
 	 * @param vo
-	 * @exception Exception
 	 */
     public void updateQnaInqireCo(QnaManageVO vo) {
 
@@ -56,7 +54,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	 * Q&A 글 목록을 조회한다.
 	 * @param searchVO
 	 * @return 글 목록
-	 * @exception Exception
 	 */
 	public List<?> selectQnaList(QnaManageDefaultVO searchVO) {
 
@@ -78,7 +75,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	/**
 	 * Q&A 글을 등록한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     public void insertQnaCn(QnaManageVO vo) {
 
@@ -100,7 +96,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	/**
 	 * Q&A 글을 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     public void updateQnaCn(QnaManageVO vo) {
 
@@ -111,7 +106,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	/**
 	 * Q&A 글을 삭제한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     public void deleteQnaCn(QnaManageVO vo) {
 
@@ -124,7 +118,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	 * Q&A 답변 글 목록에 대한 상세내용을 조회한다.
 	 * @param vo
 	 * @return 조회한 글
-	 * @exception Exception
 	 */
     public QnaManageVO selectQnaAnswerListDetail(QnaManageVO vo) {
 
@@ -137,7 +130,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	 * Q&A 답변 글 목록을 조회한다.
 	 * @param searchVO
 	 * @return 글 목록
-	 * @exception Exception
 	 */
 	public List<?> selectQnaAnswerList(QnaManageDefaultVO searchVO) {
 
@@ -159,7 +151,6 @@ public class QnaManageDAO extends EgovAbstractMapper {
 	/**
 	 * Q&A 답변 글을 수정한다.
 	 * @param vo
-	 * @exception Exception
 	 */
     public void updateQnaCnAnswer(QnaManageVO vo) {
 

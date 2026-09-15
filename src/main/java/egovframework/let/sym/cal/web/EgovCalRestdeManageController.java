@@ -60,10 +60,9 @@ public class EgovCalRestdeManageController {
 	 * 달력 메인창을 호출한다.
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovNormalCalPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cmm/callCalPopup.do")
-	public String callCalendar(ModelMap model) throws Exception {
+	public String callCalendar(ModelMap model) {
 		return "/cmm/sym/cal/EgovCalPopup";
 	}    
 	
@@ -71,10 +70,9 @@ public class EgovCalRestdeManageController {
 	 * 달력을 호출한다.
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovNormalCalPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cmm/callCal.do")
-	public String callCal(Restde restde, ModelMap model) throws Exception {
+	public String callCal(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -163,10 +161,9 @@ public class EgovCalRestdeManageController {
 	 * 일반달력 팝업 메인창을 호출한다.
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovNormalCalPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cmm/EgovNormalCalPopup.do")
-	public String callNormalCalPopup(ModelMap model) throws Exception {
+	public String callNormalCalPopup(ModelMap model) {
 		return "/sym/cal/EgovNormalCalPopup";
 	}    
 
@@ -175,10 +172,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovNormalCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cmm/EgovselectNormalCalendar.do")
-	public String selectNormalRestdePopup(Restde restde, ModelMap model) throws Exception {
+	public String selectNormalRestdePopup(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -280,10 +276,9 @@ public class EgovCalRestdeManageController {
 	 * 행정달력 팝업 메인창을 호출한다.
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovAdministCalPopup"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cmm/EgovAdministCalPopup.do")
-	public String callAdministCalPopup(ModelMap model) throws Exception {
+	public String callAdministCalPopup(ModelMap model) {
 		return "/cmm/sym/cal/EgovAdministCalPopup";
 	}    
 	
@@ -292,10 +287,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovAdministCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cmm/EgovselectAdministCalendar.do")
-	public String selectAdministRestdePopup(Restde restde, ModelMap model) throws Exception {
+	public String selectAdministRestdePopup(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -342,10 +336,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovNormalDayCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cal/EgovNormalDayCalendar.do")
-	public String selectNormalDayCalendar(Restde restde, ModelMap model) throws Exception {
+	public String selectNormalDayCalendar(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -409,10 +402,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovNormalWeekCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cal/EgovNormalWeekCalendar.do")
-	public String selectNormalWeekCalendar(Restde restde, ModelMap model) throws Exception {
+	public String selectNormalWeekCalendar(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -556,10 +548,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovNormalMonthCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cal/EgovNormalMonthCalendar.do")
-	public String selectNormalMonthCalendar(Restde restde, ModelMap model) throws Exception {
+	public String selectNormalMonthCalendar(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -607,10 +598,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovNormalYearCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cal/EgovNormalYearCalendar.do")
-	public String selectNormalYearCalendar(Restde restde, ModelMap model) throws Exception {
+	public String selectNormalYearCalendar(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -760,10 +750,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovAdministDayCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cal/EgovAdministDayCalendar.do")
-	public String selectAdministDayCalendar(Restde restde, ModelMap model) throws Exception {
+	public String selectAdministDayCalendar(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -825,10 +814,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovAdministWeekCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cal/EgovAdministWeekCalendar.do")
-	public String selectAdministWeekCalendar(Restde restde, ModelMap model) throws Exception {
+	public String selectAdministWeekCalendar(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -973,10 +961,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovAdministMonthCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cal/EgovAdministMonthCalendar.do")
-	public String selectAdministMonthCalendar(Restde restde, ModelMap model) throws Exception {
+	public String selectAdministMonthCalendar(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -1025,10 +1012,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "/cmm/sym/cal/EgovAdministYearCalendar"
-	 * @throws Exception
 	 */
 	@RequestMapping(value = "/sym/cal/EgovAdministYearCalendar.do")
-	public String selectAdministYearCalendar(Restde restde, ModelMap model) throws Exception {
+	public String selectAdministYearCalendar(Restde restde, ModelMap model) {
 
 		Calendar cal = Calendar.getInstance();
 
@@ -1180,10 +1166,9 @@ public class EgovCalRestdeManageController {
 	 * @param restde
 	 * @param model
 	 * @return "forward:/sym/cal/EgovRestdeList.do"
-	 * @throws Exception
 	 */
     @RequestMapping(value="/sym/cal/EgovRestdeRemove.do")
-	public String deleteRestde(@ModelAttribute("loginVO") LoginVO loginVO, Restde restde, ModelMap model) throws Exception {
+	public String deleteRestde(@ModelAttribute("loginVO") LoginVO loginVO, Restde restde, ModelMap model) {
     	restdeManageService.deleteRestde(restde);
         return "forward:/sym/cal/EgovRestdeList.do";
 	}
@@ -1196,10 +1181,9 @@ public class EgovCalRestdeManageController {
      * @param restde
      * @param model
      * @return "/cmm/sym/cal/EgovRestdeDetail"
-     * @throws Exception
      */
 	@RequestMapping(value="/sym/cal/EgovRestdeDetail.do")
-	public String selectRestdeDetail(@ModelAttribute("loginVO") LoginVO loginVO, Restde restde, ModelMap model) throws Exception {
+	public String selectRestdeDetail(@ModelAttribute("loginVO") LoginVO loginVO, Restde restde, ModelMap model) {
 		Restde vo = restdeManageService.selectRestdeDetail(restde);
 		model.addAttribute("result", vo);
 		
@@ -1212,10 +1196,9 @@ public class EgovCalRestdeManageController {
      * @param searchVO
      * @param model
      * @return "/cmm/sym/cal/EgovRestdeList"
-     * @throws Exception
      */
     @RequestMapping(value="/sym/cal/EgovRestdeList.do")
-	public String selectRestdeList(@ModelAttribute("loginVO") LoginVO loginVO, @ModelAttribute("searchVO") RestdeVO searchVO, ModelMap model) throws Exception {
+	public String selectRestdeList(@ModelAttribute("loginVO") LoginVO loginVO, @ModelAttribute("searchVO") RestdeVO searchVO, ModelMap model) {
     	/** EgovPropertyService.sample */
     	searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
     	searchVO.setPageSize(propertiesService.getInt("pageSize"));
@@ -1247,14 +1230,13 @@ public class EgovCalRestdeManageController {
      * @param commandMap
      * @param model
      * @return "/cmm/sym/cal/EgovRestdeModify"
-     * @throws Exception
      */
     @RequestMapping(value="/sym/cal/EgovRestdeModify.do")
 	public String updateRestde (@ModelAttribute("loginVO") LoginVO loginVO
 			, @ModelAttribute("restde") Restde restde
 			, BindingResult bindingResult
 	, @RequestParam Map<String, Object> commandMap
-	, ModelMap model) throws Exception {
+	, ModelMap model) {
 		String sCmd = commandMap.get("cmd") == null ? "" : (String) commandMap.get("cmd");
 		if (sCmd.equals("")) {
 			Restde vo = restdeManageService.selectRestdeDetail(restde);

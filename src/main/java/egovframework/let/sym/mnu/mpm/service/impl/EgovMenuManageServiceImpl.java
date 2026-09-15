@@ -40,10 +40,9 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
 	 * MainMenu Head Menu 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
 	 */
 	@Override
-	public List<?> selectMainMenuHead(MenuManageVO vo) throws Exception {
+	public List<?> selectMainMenuHead(MenuManageVO vo) {
    		return menuManageDAO.selectMainMenuHead(vo);
 	}
 
@@ -51,10 +50,9 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
 	 * MainMenu Head Left 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
 	 */
 	@Override
-	public List<?> selectMainMenuLeft(MenuManageVO vo) throws Exception {
+	public List<?> selectMainMenuLeft(MenuManageVO vo) {
    		return menuManageDAO.selectMainMenuLeft(vo);
 	}
 
@@ -63,10 +61,9 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
 	 * @param  iMenuNo  int
 	 * @param  sUniqId  String
 	 * @return String
-	 * @exception Exception
 	 */
 	@Override
-	public String selectLastMenuURL(int iMenuNo, String sUniqId) throws Exception {
+	public String selectLastMenuURL(int iMenuNo, String sUniqId) {
 		MenuManageVO vo = new MenuManageVO();
 		vo.setMenuNo(selectLastMenuNo(iMenuNo, sUniqId)) ;
    		return menuManageDAO.selectLastMenuURL(vo);
@@ -77,9 +74,8 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
 	 * @param  iMenuNo  int
 	 * @param  sUniqId  String
 	 * @return String
-	 * @exception Exception
 	 */
-	private int selectLastMenuNo(int iMenuNo, String sUniqId) throws Exception {
+	private int selectLastMenuNo(int iMenuNo, String sUniqId) {
 		int chkMenuNo = iMenuNo;
 		int cntMenuNo = 0;
 		for(;chkMenuNo > -1;){
@@ -96,9 +92,8 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
 	 * @param  iMenuNo  int
 	 * @param  sUniqId  String
 	 * @return String
-	 * @exception Exception
 	 */
-	private int selectLastMenuNoChk(int iMenuNo, String sUniqId) throws Exception {
+	private int selectLastMenuNoChk(int iMenuNo, String sUniqId) {
 		MenuManageVO vo = new MenuManageVO();
 		vo.setMenuNo(iMenuNo);
 		vo.setTempValue(sUniqId) ;
@@ -117,10 +112,9 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
 	 * MainMenu Head Menu 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
 	 */
 	@Override
-	public List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) throws Exception {
+	public List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) {
    		return menuManageDAO.selectMainMenuHeadByAuthor(vo);
 	}
 
@@ -128,10 +122,9 @@ public class EgovMenuManageServiceImpl extends EgovAbstractServiceImpl implement
 	 * MainMenu Head Left 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
 	 */
 	@Override
-	public List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception {
+	public List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) {
    		return menuManageDAO.selectMainMenuLeftByAuthor(vo);
 	}
 

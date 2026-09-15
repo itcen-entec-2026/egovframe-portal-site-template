@@ -29,41 +29,36 @@ public interface EgovMenuManageService {
 	 * MainMenu Head Menu 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
 	 */
-	List<?> selectMainMenuHead(MenuManageVO vo) throws Exception;
+	List<?> selectMainMenuHead(MenuManageVO vo);
 
 	/**
 	 * MainMenu Head Left 조회
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
 	 */
-	List<?> selectMainMenuLeft(MenuManageVO vo) throws Exception;
+	List<?> selectMainMenuLeft(MenuManageVO vo);
 
 	/**
 	 * MainMenu Head MenuURL 조회
 	 * @param iMenuNo int
 	 * @param sUniqId String
 	 * @return String
-	 * @exception Exception
 	 */
-	String selectLastMenuURL(int iMenuNo, String sUniqId) throws Exception;
+	String selectLastMenuURL(int iMenuNo, String sUniqId);
 
 	/**
 	 * MainMenu Head Menu 조회 - Anonymous
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
 	 */
-	List<?> selectMainMenuHeadByAuthor(MenuManageVO vo) throws Exception;
+	List<?> selectMainMenuHeadByAuthor(MenuManageVO vo);
 
 	/**
 	 * MainMenu Head Left 조회 - Anonymous
 	 * @param vo MenuManageVO
 	 * @return List
-	 * @exception Exception
 	 */
-	List<?> selectMainMenuLeftByAuthor(MenuManageVO vo) throws Exception;
+	List<?> selectMainMenuLeftByAuthor(MenuManageVO vo);
 
 }
